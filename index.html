@@ -43,9 +43,11 @@
   <script>
 
   let letterCounter = 0;
+  let openSpots = [];
 
   function clickLetter(index,item) {
     $("#letter-" + index).html('');
+    openSpots.push(index);
     document.getElementById("square-" + letterCounter).append(`${item}`);
     letterCounter++;
   }
@@ -54,7 +56,8 @@
         if (item && index==letterCounter-1) {
           letterCounter--;
           $("#square-" + index).html('');
-          document.getElementById("letter-" + index).append(`${item}`);
+          document.getElementById("letter-" + openSpots[0]).append(item);
+          openSpots.pop();
         }   
       }
 
