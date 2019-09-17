@@ -51,7 +51,7 @@
   }
 
       function clickSquare(index,item) {
-        if (item && index==letterCounter) {
+        if (item && index==letterCounter-1) {
           letterCounter--;
           $("#square-" + index).html('');
           document.getElementById("letter-" + index).append(`${item}`);
