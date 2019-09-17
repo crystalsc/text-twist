@@ -13,7 +13,7 @@
         height: 50px;
         width: 50px;
         margin: 10px;
-        background-color: #555;
+        border-color: black;
       }
       .letter {
         height: 50px;
@@ -39,17 +39,28 @@
   </body>
   <script>
     $(document).ready(function(){
+
+      let letterCount = 0;
       
       let showRacks = function(racks){
         $("#boxes").html('');
         $("#letters").html('');
         racks.map(rack=>{
           rack.rack.split('').forEach(function (item, index) {
-            $("#boxes").append(`<div class="square"></div>`);
-            $("#letters").append(`<div class="letter">${item}</div>`);
+            $("#boxes").append(`<div class="square" onclick="clickSquare(${index},${item})" id="square-${index}"></div>`);
+            $("#letters").append(`<div class="letter" onclick="clickLetter(${index},${item})" id="letter-${index}">${item}</div>`);
           });
         })
        
+      }
+
+      function clickLetter(index,item) {
+        $("#letter-" + index).html('');
+        document.getElementById("square-" + index).append(`<div class="letter" onclick="clickSquareLetter(${index})" id="squareLetter-${index}">${item}</div>`);
+      }
+
+      function clickSquare(index) {
+        document.getElementById("demo").style.color = "red";
       }
       
       $("#grabmore").on("click", function(){
