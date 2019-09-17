@@ -50,13 +50,13 @@
         racks.map(rack=>{
           rack.rack.split('').forEach(function (item, index) {
             $("#boxes").append(`<div class="square" onclick="clickSquare()" index=${index} item=${item} id="square-${index}"></div>`);
-            $("#letters").append(`<div class="letter" onclick="clickLetter(${index},${item})" id="letter-${index}">${item}</div>`);
+            $("#letters").append(`<div class="letter" onclick="clickLetter(0,'A')" id="letter-${index}">${item}</div>`);
           });
         })
        
       }
 
-      var clickLetter = function(index,item) {
+      function clickLetter(index,item) {
         // $("#letter-" + index).html('');
         // document.getElementById("square-" + index).append(`<div class="letter" onclick="clickSquareLetter(${index})" id="squareLetter-${index}">${item}</div>`);
       }
