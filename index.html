@@ -40,11 +40,10 @@
       let showRacks = function(racks){
         $("#boxes").html('');
         racks.map(rack=>{
-          console.log(rack);
-          // rack.split('').forEach(function (item, index) {
-          //   $("#boxes").append(`<div class="square"></div>`);
-          //   $("#letters").append(`<div class="letter">{{item}}</div>`);
-          // });
+          rack.rack.split('').forEach(function (item, index) {
+            $("#boxes").append(`<div class="square"></div>`);
+            $("#letters").append(`<div class="letter">{{item}}</div>`);
+          });
         })
        
       }
