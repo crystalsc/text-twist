@@ -54,8 +54,8 @@
         $("#letters").html('');
         racks.map(rack=>{
           rack.rack.split('').forEach(function (item, index) {
-            $("#boxes").append(`<div class="square" onclick="clickSquare()" index=${index} item=${item} id="square-${index}"></div>`);
-            $("#letters").append(`<div class="letter" onclick="clickLetter()" id="letter-${index}">${item}</div>`);
+            $("#boxes").append(`<a class="square" onclick="clickSquare()" index=${index} item=${item} id="square-${index}"></a>`);
+            $("#letters").append(`<a class="letter" onclick="clickLetter()" id="letter-${index}">${item}</a>`);
           });
         })
        
