@@ -29,6 +29,7 @@
   </head>
   <body>
     <h1>Text Twist</h1>
+    <button onclick="myFunction('Harry Potter','Wizard')">Try it</button>
     <div class="row side" id="boxes">
       
     </div>
@@ -40,12 +41,18 @@
     </ul>
   </body>
   <script>
+
+  function clickLetter(index,item) {
+          // $("#letter-" + index).html('');
+          // document.getElementById("square-" + index).append(`<div class="letter" onclick="clickSquareLetter(${index})" id="squareLetter-${index}">${item}</div>`);
+        }
+
+        function clickSquare(index,item) {
+        document.getElementById("demo").style.color = "red";
+      }
     $(document).ready(function(){
 
-      function clickLetter() {
-        // $("#letter-" + index).html('');
-        // document.getElementById("square-" + index).append(`<div class="letter" onclick="clickSquareLetter(${index})" id="squareLetter-${index}">${item}</div>`);
-      }
+      
 
       let letterCount = 0;
       
@@ -54,8 +61,8 @@
         $("#letters").html('');
         racks.map(rack=>{
           rack.rack.split('').forEach(function (item, index) {
-            $("#boxes").append(`<a class="square" onclick="clickSquare()" index=${index} item=${item} id="square-${index}"></a>`);
-            $("#letters").append(`<a class="letter" onclick="clickLetter()" id="letter-${index}">${item}</a>`);
+            $("#boxes").append(`<a class="square" onclick="clickSquare(${index},${item})" index=${index} item=${item} id="square-${index}"></a>`);
+            $("#letters").append(`<a class="letter" onclick="clickLetter(${index},${item})" id="letter-${index}">${item}</a>`);
           });
         })
        
@@ -63,9 +70,7 @@
 
       
 
-      function clickSquare(index,item) {
-        document.getElementById("demo").style.color = "red";
-      }
+      
       
       $("#grabmore").on("click", function(){
         $.ajax({
