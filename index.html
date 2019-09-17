@@ -42,7 +42,7 @@
         racks.map(rack=>{
           rack.rack.split('').forEach(function (item, index) {
             $("#boxes").append(`<div class="square"></div>`);
-            $("#letters").append(`<div class="letter">{{item}}</div>`);
+            $("#letters").append(`<div class="letter">${item}</div>`);
           });
         })
        
