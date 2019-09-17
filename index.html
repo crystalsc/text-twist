@@ -3,6 +3,9 @@
   <head>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
+      .side {
+        padding-left: 10px;
+      }
       .hidden {
         display: none;
       }
@@ -24,10 +27,10 @@
   </head>
   <body>
     <h1>Text Twist</h1>
-    <div class="row" id="boxes">
+    <div class="row side" id="boxes">
       
     </div>
-    <div class="row" id="letters">
+    <div class="row side" id="letters">
 
     </div>
     <button id="grabmore">Fetch 10 Bingos</button>
@@ -39,6 +42,7 @@
       
       let showRacks = function(racks){
         $("#boxes").html('');
+        $("#letters").html('');
         racks.map(rack=>{
           rack.rack.split('').forEach(function (item, index) {
             $("#boxes").append(`<div class="square"></div>`);
