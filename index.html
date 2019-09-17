@@ -42,6 +42,11 @@
   <script>
     $(document).ready(function(){
 
+      function clickLetter() {
+        // $("#letter-" + index).html('');
+        // document.getElementById("square-" + index).append(`<div class="letter" onclick="clickSquareLetter(${index})" id="squareLetter-${index}">${item}</div>`);
+      }
+
       let letterCount = 0;
       
       let showRacks = function(racks){
@@ -56,10 +61,7 @@
        
       }
 
-      function clickLetter() {
-        // $("#letter-" + index).html('');
-        // document.getElementById("square-" + index).append(`<div class="letter" onclick="clickSquareLetter(${index})" id="squareLetter-${index}">${item}</div>`);
-      }
+      
 
       function clickSquare(index,item) {
         document.getElementById("demo").style.color = "red";
