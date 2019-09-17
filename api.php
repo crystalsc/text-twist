@@ -1,4 +1,5 @@
 <?php
+
     //this is the basic way of getting a database handler from PDO, PHP's built in quasi-ORM
     $dbhandle = new PDO("sqlite:scrabble.sqlite") or die("Failed to open DB");
     if (!$dbhandle) die ($error);
@@ -7,7 +8,7 @@
     //the limit 0, 10 takes the first 10 results.
     // you might want to consider taking more results, implementing "pagination", 
     // ordering by rank, etc.
-    $query = "SELECT rack, words FROM racks";
+    $query = "SELECT rack, words FROM racks WHERE length=7 and weight <= 10 order by random() limit 0, 10";
     
     //this next line could actually be used to provide user_given input to the query to 
     //avoid SQL injection attacks
@@ -27,4 +28,5 @@
     header('Content-Type: application/json');
     //this creates json and gives it back to the browser
     echo json_encode($results);
+
 ?>
