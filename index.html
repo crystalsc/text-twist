@@ -16,6 +16,7 @@
         border-style: ridge;
         border-width: 5px;
         border-color: coral; 
+        justify-content: center;
       }
       .letter {
         height: 50px;
@@ -42,13 +43,17 @@
   <script>
 
   function clickLetter(index,item) {
-          $("#letter-" + index).html('');
-          document.getElementById("square-" + index).append(`${item}`);
-        }
+    $("#letter-" + index).html('');
+    document.getElementById("square-" + index).append(`${item}`);
+  }
 
-        function clickSquare(index,item) {
-        document.getElementById("demo").style.color = "red";
+      function clickSquare(index,item) {
+        if (item) {
+          $("#square-" + index).html('');
+          document.getElementById("letter-" + index).append(`${item}`);
+        }   
       }
+      
     $(document).ready(function(){
 
       
@@ -60,7 +65,7 @@
         $("#letters").html('');
         racks.map(rack=>{
           rack.rack.split('').forEach(function (item, index) {
-            $("#boxes").append(`<a class="square" onclick="clickSquare(${index},'${item}')" index=${index} item=${item} id="square-${index}"></a>`);
+            $("#boxes").append(`<a class="square" onclick="clickSquare(${index},'${item}')" id="square-${index}"></a>`);
             $("#letters").append(`<a class="letter" onclick="clickLetter(${index},'${item}')" id="letter-${index}">${item}</a>`);
           });
         })
