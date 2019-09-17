@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
       .hidden {
         display: none;
       }
+      .square {
+        height: 50px;
+        width: 50px;
+        background-color: #555;
+      }
     </style>
+    
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    
   </head>
   <body>
     <h1>Text Twist</h1>
+    <div class="row" id="boxes">
+      
+    </div>
     <button id="grabmore">Fetch 10 Bingos</button>
     <ul id="bingos">
     </ul>
@@ -18,13 +29,11 @@
     $(document).ready(function(){
       
       let showRacks = function(racks){
-        $("#bingos").html('');
+        $("#boxes").html('');
         racks.map(rack=>{
-          $("#bingos").append(`<li>${rack.rack}: <span class="answer hidden">${rack.words}</span></li>`);
+          $("#boxes").append(`<div class="square"></div>`);
         });
-        $("#bingos li").on("click", function(evt){
-          $(evt.currentTarget).find(".answer").toggleClass("hidden");
-        });
+       
       }
       
       $("#grabmore").on("click", function(){
