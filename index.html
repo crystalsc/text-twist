@@ -48,7 +48,7 @@
       <div class="row buttons">
           <button id="easy">Easy</button>
           <button id="med">Medium</button>
-          <button id="hard">hard</button>
+          <button id="hard">Hard</button>
         </div>
   </div>
   <div class="side" id="game">
@@ -173,6 +173,7 @@
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
       let method = "GET/" + mode;
+      console.log(method);
       $.ajax({
         method: method,
         url: "api.php",
