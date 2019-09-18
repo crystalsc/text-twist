@@ -48,7 +48,7 @@
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             header('HTTP/1.1 200 OK');
             header('Content-Type: application/json');
-            echo "worked?";
+            echo json_encode($results);
         } else {
             echo "USAGE GET or POST";
         }
