@@ -63,8 +63,7 @@
     $("#score").html("");
     if(words.includes(solution.join(''))) {
       $("#response").append(`Correct!`);
-      score += weight;
-      score = parseInt(score);
+      score = parseInt(score) + parseInt(weight);
       $("#score").append("Score: " + score);
       $.ajax({
             method: "GET",
