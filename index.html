@@ -51,7 +51,7 @@ header,
     }
     a:hover {
   cursor: pointer;
-  background:rgb(214, 210, 168);
+  background:rgb(241, 238, 204);
 }
   </style>
 
@@ -61,16 +61,24 @@ header,
 
 <body>
   <div class="side card shadow p-3 mb-5 bg-white rounded" id="start">
+      <div class="card-header">
+          <h1>Let's Get Twisty! </h1>
+        </div>
+        <div class="card-title">
+            Pick a difficulty setting to get started.
+          </div>
       <div class="row buttons card-body">
-          <button id="easy">Easy</button>
-          <button id="med">Medium</button>
-          <button id="hard">Hard</button>
+        
+          <button class="btn btn-primary" id="easy">Easy</button>
+          <button class="btn btn-primary" id="med">Medium</button>
+          <button class="btn btn-primary" id="hard">Hard</button>
         </div>
   </div>
   <div class="side card shadow p-3 mb-5 bg-white rounded" id="game">
+      <div class="card-header">
+          <h1>Let's Get Twisty!</h1>
+        </div>
     <div class="card-body">
-    <h1>Text Twist</h1>
-
     <div id="score">
 
     </div>
@@ -84,7 +92,7 @@ header,
 
     </div>
     <div class="row buttons">
-      <button onclick="checkSolution()">Enter</button>
+      <button class="btn btn-primary" onclick="checkSolution()">Enter</button>
     </div>
     <div id="response">
 
