@@ -1,4 +1,13 @@
 <?php
+
+function console_log($output, $with_script_tags = true) {
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
+');';
+    if ($with_script_tags) {
+        $js_code = '<script>' . $js_code . '</script>';
+    }
+    echo $js_code;
+}
         $verb = $_SERVER["REQUEST_METHOD"];
         
         if ($verb == "GET"){
@@ -41,7 +50,7 @@
             if (isset($_POST["date"])){
                 $date = $_POST["date"];
             }
-            $query = "INSERT INTO results (user,score,date_submitted) VALUES($user,$score,$date)";
+            $query = "INSERT INTO results (user,score,date_submitted) VALUES(" + $user +"," + $score + "," +$date + ")";
             $statement = $dbhandle->prepare($query);
             $statement->execute();
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
