@@ -54,7 +54,7 @@ function console_log($output, $with_script_tags = true) {
             $query = "insert into results (user,score,date_submitted) values(" + $user + "," + $score + "," + $date + ")";
             echo $query;
             echo $user;
-            echo "hi";
+            echo "insert into results (user,score,date_submitted) values(" + $user + "," + $score + "," + $date + ")";
             // $statement = $dbhandle->prepare($query);
             // $statement->execute();
             // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
