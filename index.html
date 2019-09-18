@@ -306,12 +306,13 @@
     });
     $("#name").on("click", function () {
       let x = document.getElementById("name").value;
+      console.log(x);
       if (x) {
         $.ajax({
           method: "POST",
           url: "api.php",
           data: { name: x, score: score, date: Date.now() },
-          success: data => { showRacks(data) }
+          success: data => { console.log(data) }
         });
       }
 
