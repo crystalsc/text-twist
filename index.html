@@ -53,11 +53,13 @@
   let solution = [];
   let words = [];
   let score = 0;
+  let weight = 0;
 
   function checkSolution() {
     $("#response").html("");
     if(words.includes(solution.join(''))) {
       $("#response").append(`Correct!`);
+      score += weight;
       $.ajax({
             method: "GET",
             url: "api.php",
@@ -90,6 +92,7 @@
         $("#boxes").html('');
         $("#letters").html('');
         racks.map(rack=>{
+          weight = rack.weight;
           words = rack.words.split('@@');
           console.log(words);
           rack.rack.split('').forEach(function (item, index) {

@@ -11,7 +11,7 @@
             //the limit 0, 10 takes the first 10 results.
             // you might want to consider taking more results, implementing "pagination", 
             // ordering by rank, etc.
-            $query = "SELECT rack, words FROM racks order by random() limit 1";
+            $query = "SELECT rack, weight, words FROM racks order by random() limit 1";
             
             //this next line could actually be used to provide user_given input to the query to 
             //avoid SQL injection attacks
