@@ -45,12 +45,15 @@
   let letterCounter = 0;
   let dict = {};
   let dictSquare = {};
+  let solution = [];
 
   function clickLetter(index) {
     $("#letter-" + index).html('');
     document.getElementById("square-" + letterCounter).append(dict[index]);
     dictSquare[letterCounter] = index;
     letterCounter++;
+    solution.push(dict[index]);
+    console.log(solution);
   }
 
       function clickSquare(index) {
@@ -58,6 +61,8 @@
           letterCounter--;
           document.getElementById("letter-" + dictSquare[letterCounter]).append(dict[dictSquare[letterCounter]]);
           $("#square-" + index).html('');
+          solution.pop();
+          console.log(solution);
         }   
       }
 
