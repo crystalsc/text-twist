@@ -36,9 +36,13 @@
     <div class="row side" id="letters">
 
     </div>
-    <button id="grabmore">New word</button>
-    <ul id="bingos">
-    </ul>
+    <div class="row">
+        <button id="grabmore">New word</button>
+        <button onclick="checkSolution()">New word</button>
+    </div>
+    <div id="response">
+
+    </div>
   </body>
   <script>
 
@@ -46,6 +50,16 @@
   let dict = {};
   let dictSquare = {};
   let solution = [];
+  let words = [];
+  let score = 0;
+
+  function checkSolution() {
+    if(words.includes(solution.join(''))) {
+      $("#response").append(`Correct!`);
+    } else {
+      $("#response").append(`Try Again!`);
+    }
+  }
 
   function clickLetter(index) {
     $("#letter-" + index).html('');
@@ -53,7 +67,6 @@
     dictSquare[letterCounter] = index;
     letterCounter++;
     solution.push(dict[index]);
-    console.log(solution);
   }
 
       function clickSquare(index) {
@@ -62,7 +75,6 @@
           document.getElementById("letter-" + dictSquare[letterCounter]).append(dict[dictSquare[letterCounter]]);
           $("#square-" + index).html('');
           solution.pop();
-          console.log(solution);
         }   
       }
 
@@ -70,9 +82,11 @@
 
       
       let showRacks = function(racks){
+        console.log(racks);
         $("#boxes").html('');
         $("#letters").html('');
         racks.map(rack=>{
+          words = rack.words.split('@@');
           rack.rack.split('').forEach(function (item, index) {
             dict[index] = item;
             $("#boxes").append(`<a class="square" onclick="clickSquare(${index})" id="square-${index}"></a>`);
@@ -82,10 +96,6 @@
        
       }
 
-      
-
-      
-      
       $("#grabmore").on("click", function(){
         $.ajax({
             method: "GET",
