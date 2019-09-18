@@ -177,7 +177,7 @@
       $.ajax({
         method: method,
         url: "api.php",
-        success: data => { showRacks(data) }
+        success: data => { showRacks(data); console.log(data) }
       });
     });
     $("#score").append("Score: " + score);
