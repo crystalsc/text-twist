@@ -39,7 +39,7 @@ header,
       text-align: center;
     }
 
-    #game {
+    #game, #compTimer {
       display: none;
     }
 
@@ -70,8 +70,12 @@ header,
   <div class="side card shadow p-3 mb-5 bg-white rounded" id="start">
         <div class="card-title">
             <h1>Let's Get Twisty! </h1>
-            Pick a difficulty setting to get started.
+            Select if you want to do competition mode and pick a difficulty setting to get started.
           </div>
+          <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="competition">
+              <label class="form-check-label" for="competition">Competition Mode</label>
+            </div>
       <div class="row buttons card-body">
         
           <button class="btn btn-primary buttons" id="easy">Easy</button>
@@ -87,6 +91,9 @@ header,
     <div class="card-body">
     <div id="score">
 
+    </div>
+    <div id="compTimer">
+    Time Remaining: <span id="timer">05:00<span>
     </div>
     <div id="mode">
 
@@ -180,6 +187,25 @@ header,
   $(document).ready(function () {
     document.getElementById("game").style.display = "none";
     document.getElementById("start").style.display = "block";
+    let x = document.getElementById("competition").value;
+    if (x === true) {
+      document.getElementById("compTimer").style.display = "block";
+      window.onload = function() {
+      var hour = 2;
+      var sec = 60;
+      setInterval(function() {
+        document.getElementById("timer").innerHTML = hour + " : " + sec;
+        sec--;
+        if (sec == 00) {
+          hour--;
+          sec = 60;
+          if (hour == 0) {
+            hour = 2;
+          }
+        }
+      }, 1000);
+    }
+    }
     $("#easy").on("click", function() {
       mode = "Easy";
       document.getElementById("game").style.display = "block";
