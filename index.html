@@ -13,7 +13,6 @@ header,
     }
     .side {
       width: 50%;
-      border: 3px solid green;
       margin-top:50px;
     }
 
@@ -45,7 +44,6 @@ header,
 
     .buttons {
       padding: 5px;
-      margin: 10px;
     }
     a:hover {
   cursor: pointer;
@@ -58,36 +56,24 @@ header,
 </head>
 
 <body>
-    <div class="card">
-        <div class="card-header">
-          Featured
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
   <div class="container">
   <div class="d-flex justify-content-center">
-  <div class="side card shadow p-3 mb-5 bg-white rounded" style="padding:0px" id="start">
-      <div class="card-header">
-          <h1>Let's Get Twisty! </h1>
-        </div>
+  <div class="side card shadow p-3 mb-5 bg-white rounded" id="start">
         <div class="card-title">
+            <h1>Let's Get Twisty! </h1>
             Pick a difficulty setting to get started.
           </div>
       <div class="row buttons card-body">
         
-          <button class="btn btn-primary" id="easy">Easy</button>
-          <button class="btn btn-primary" id="med">Medium</button>
-          <button class="btn btn-primary" id="hard">Hard</button>
+          <button class="btn btn-primary buttons" id="easy">Easy</button>
+          <button class="btn btn-primary buttons" id="med">Medium</button>
+          <button class="btn btn-primary buttons" id="hard">Hard</button>
         </div>
   </div>
 
   <div class="side card shadow p-3 mb-5 bg-white rounded" id="game">
-      <div class="card-header">
-          <h1>Let's Get Twisty!</h1>
+      <div class="card-title">
+          <h1>Let's Get Twisty! </h1>
         </div>
     <div class="card-body">
     <div id="score">
