@@ -44,17 +44,21 @@
 </head>
 
 <body>
-  <div class="side" id="start">
-      <div class="row buttons">
+  <div class="side card" id="start">
+      <div class="row buttons card-body">
           <button id="easy">Easy</button>
           <button id="med">Medium</button>
           <button id="hard">Hard</button>
         </div>
   </div>
-  <div class="side" id="game">
+  <div class="side card" id="game">
+    <div class="card-body">
     <h1>Text Twist</h1>
 
     <div id="score">
+
+    </div>
+    <div id="mode">
 
     </div>
     <div class="row" id="boxes">
@@ -64,12 +68,12 @@
 
     </div>
     <div class="row buttons">
-      <!-- <button id="grabmore">New word</button> -->
       <button onclick="checkSolution()">Enter</button>
     </div>
     <div id="response">
 
     </div>
+  </div>
   </div>
 </body>
 <script>
@@ -119,8 +123,6 @@
   }
 
   let showRacks = function (racks) {
-    console.log("here");
-    console.log(racks);
     letterCounter = 0;
     dict = {};
     dictSquare = {};
@@ -146,7 +148,7 @@
     document.getElementById("game").style.display = "none";
     document.getElementById("start").style.display = "block";
     $("#easy").on("click", function() {
-      mode = "easy";
+      mode = "Easy";
       scoreMultiple = 1;
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
@@ -158,7 +160,7 @@
       });
     });
     $("#med").on("click", function() {
-      mode = "med";
+      mode = "Medium";
       scoreMultiple = 2;
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
@@ -171,16 +173,18 @@
     });
     $("#hard").on("click", function() {
       scoreMultiple = 3;
+      mode = "Hard";
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
       $.ajax({
         method: "GET",
         url: "api.php",
         data: { mode: "HARD"},
-        success: data => { showRacks(data); console.log(data); }
+        success: data => { showRacks(data); }
       });
     });
     $("#score").append("Score: " + score);
+    $("#mode").append("Mode: " + mode);
     $("#grabmore").on("click", function () {
       $.ajax({
         method: "GET",
