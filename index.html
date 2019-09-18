@@ -163,6 +163,7 @@ header,
       scoreMultiple = 1;
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
+      $("#mode").append("Mode: " + mode);
       $.ajax({
         method: "GET",
         url: "api.php",
@@ -175,6 +176,7 @@ header,
       scoreMultiple = 2;
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
+      $("#mode").append("Mode: " + mode);
       $.ajax({
         method: "GET",
         url: "api.php",
@@ -187,6 +189,7 @@ header,
       mode = "Hard";
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
+      $("#mode").append("Mode: " + mode);
       $.ajax({
         method: "GET",
         url: "api.php",
@@ -195,7 +198,6 @@ header,
       });
     });
     $("#score").append("Score: " + score);
-    $("#mode").append("Mode: " + mode);
     $("#grabmore").on("click", function () {
       $.ajax({
         method: "GET",
