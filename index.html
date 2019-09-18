@@ -134,6 +134,7 @@ header,
   }
 
   let showRacks = function (racks) {
+    console.log(racks);
     letterCounter = 0;
     dict = {};
     dictSquare = {};
@@ -145,7 +146,6 @@ header,
     racks.map(rack => {
       weight = rack.weight;
       words = rack.words.split('@@');
-      console.log(words);
       rack.rack.split('').forEach(function (item, index) {
         dict[index] = item;
         $("#boxes").append(`<a class="square" onclick="clickSquare(${index})" id="square-${index}"></a>`);
