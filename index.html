@@ -168,6 +168,7 @@ header,
   function startTimer(duration, display) {
     let x = document.getElementById("competition").value;
     if (x === "on") {
+    document.getElementById("compTimer").style.display = "block";
     var timer = duration, minutes, seconds;
     setInterval(function () {
         minutes = parseInt(timer / 60, 10);
