@@ -18,7 +18,7 @@
             // } else {
             //     $query = "SELECT rack, weight, words where weight <= 5 FROM racks order by random() limit 1";
             // }
-            $query = "SELECT rack, max(weight), words where weight > 10 FROM racks order by random() limit 1";
+            $query = "SELECT rack, max(weight), words FROM racks order by random() limit 1";
             $statement = $dbhandle->prepare($query);
             $statement->execute();
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
