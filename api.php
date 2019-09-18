@@ -51,13 +51,13 @@ function console_log($output, $with_script_tags = true) {
                 $date = $_POST["date"];
             }
             $query = "INSERT INTO results (user,score,date_submitted) VALUES(" + $user +"," + $score + "," +$date + ")";
-            console.log($query);
-            $statement = $dbhandle->prepare($query);
-            $statement->execute();
-            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-            header('HTTP/1.1 200 OK');
-            header('Content-Type: application/json');
-            echo json_encode($results);
+            echo $query;
+            // $statement = $dbhandle->prepare($query);
+            // $statement->execute();
+            // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            // header('HTTP/1.1 200 OK');
+            // header('Content-Type: application/json');
+            // echo json_encode($results);
         } else {
             echo "USAGE GET or POST";
         }
