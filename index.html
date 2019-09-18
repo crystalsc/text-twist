@@ -1,64 +1,78 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-      .side {
-        justify-content: center;
-        margin: auto;
-        width: 50%;
-        border: 3px solid green;
-        padding: 10px;
-      }
-      .hidden {
-        display: none;
-      }
-      .square {
-        height: 50px;
-        width: 50px;
-        margin: 10px;
-        border-style: ridge;
-        border-width: 5px;
-        border-color: coral; 
-        justify-content: center;
-        text-align: center;
-      }
-      .letter {
-        height: 50px;
-        width: 50px;
-        margin: 10px;
-      }
-      .buttons {
-        margin: 10px;
-      }
-    </style>
-    
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-    
-  </head>
-  <body>
-      <div class="side">
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    .side {
+      justify-content: center;
+      margin: auto;
+      width: 50%;
+      border: 3px solid green;
+      padding: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .square {
+      height: 50px;
+      width: 50px;
+      margin: 10px;
+      border-style: ridge;
+      border-width: 5px;
+      border-color: coral;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .letter {
+      height: 50px;
+      width: 50px;
+      margin: 10px;
+    }
+
+    .buttons {
+      margin: 10px;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <div class="side" id="start">
+      <div class="row buttons">
+          <button id="easy">Easy</button>
+          <button id="med">Medium</button>
+          <button id="hard">hard</button>
+        </div>
+  </div>
+  <div class="side" id="game">
     <h1>Text Twist</h1>
-    
+
     <div id="score">
-      
+
     </div>
     <div class="row" id="boxes">
-      
+
     </div>
     <div class="row" id="letters">
 
     </div>
     <div class="row buttons">
-        <button id="grabmore">New word</button>
-        <button onclick="checkSolution()">Enter</button>
+      <!-- <button id="grabmore">New word</button> -->
+      <button onclick="checkSolution()">Enter</button>
     </div>
     <div id="response">
 
     </div>
   </div>
-  </body>
-  <script>
+</body>
+<script>
 
   let letterCounter = 0;
   let dict = {};
@@ -67,19 +81,21 @@
   let words = [];
   let score = 0;
   let weight = 0;
+  let mode = "easy";
+  let scoreMultiple = 1;
 
   function checkSolution() {
     $("#response").html("");
     $("#score").html("");
-    if(words.includes(solution.join(''))) {
+    if (words.includes(solution.join(''))) {
       $("#response").append(`Correct!`);
-      score = parseInt(score) + parseInt(weight);
+      score = parseInt(score) + (parseInt(weight)*scoreMultiple);
       $("#score").append("Score: " + score);
       $.ajax({
-            method: "GET",
-            url: "api.php",
-            success: data=>{ showRacks(data)}
-        });
+        method: "GET",
+        url: "api.php",
+        success: data => { showRacks(data) }
+      });
     } else {
       $("#response").append(`Try Again!`);
     }
@@ -93,46 +109,86 @@
     solution.push(dict[index]);
   }
 
-      function clickSquare(index) {
-        if (index==letterCounter-1) {
-          letterCounter--;
-          document.getElementById("letter-" + dictSquare[letterCounter]).append(dict[dictSquare[letterCounter]]);
-          $("#square-" + index).html('');
-          solution.pop();
-        }   
-      }
+  function clickSquare(index) {
+    if (index == letterCounter - 1) {
+      letterCounter--;
+      document.getElementById("letter-" + dictSquare[letterCounter]).append(dict[dictSquare[letterCounter]]);
+      $("#square-" + index).html('');
+      solution.pop();
+    }
+  }
 
-      let showRacks = function(racks){
-        letterCounter = 0;
-        dict = {};
-        dictSquare = {};
-        solution = [];
-        words = [];
-        weight = 0;
-        $("#boxes").html('');
-        $("#letters").html('');
-        racks.map(rack=>{
-          weight = rack.weight;
-          words = rack.words.split('@@');
-          console.log(words);
-          rack.rack.split('').forEach(function (item, index) {
-            dict[index] = item;
-            $("#boxes").append(`<a class="square" onclick="clickSquare(${index})" id="square-${index}"></a>`);
-            $("#letters").append(`<a class="letter" onclick="clickLetter(${index})" id="letter-${index}">${item}</a>`);
-          });
-        })
-       
-      }
+  let showRacks = function (racks) {
+    letterCounter = 0;
+    dict = {};
+    dictSquare = {};
+    solution = [];
+    words = [];
+    weight = 0;
+    $("#boxes").html('');
+    $("#letters").html('');
+    racks.map(rack => {
+      weight = rack.weight;
+      words = rack.words.split('@@');
+      console.log(words);
+      rack.rack.split('').forEach(function (item, index) {
+        dict[index] = item;
+        $("#boxes").append(`<a class="square" onclick="clickSquare(${index})" id="square-${index}"></a>`);
+        $("#letters").append(`<a class="letter" onclick="clickLetter(${index})" id="letter-${index}">${item}</a>`);
+      });
+    })
 
-    $(document).ready(function(){
-      $("#score").append("Score: " + score);
-      $("#grabmore").on("click", function(){
-        $.ajax({
-            method: "GET",
-            url: "api.php",
-            success: data=>{ showRacks(data)}
-        });
+  }
+
+  $(document).ready(function () {
+    document.getElementById("game").style.display = "none";
+    document.getElementById("start").style.display = "block";
+    $("#easy").on("click", function() {
+      mode = "easy";
+      scoreMultiple = 1;
+      document.getElementById("game").style.display = "block";
+      document.getElementById("start").style.display = "none";
+      let method = "GET/" + mode;
+      $.ajax({
+        method: method,
+        url: "api.php",
+        success: data => { showRacks(data) }
       });
     });
-  </script>
+    $("#med").on("click", function() {
+      mode = "med";
+      scoreMultiple = 2;
+      document.getElementById("game").style.display = "block";
+      document.getElementById("start").style.display = "none";
+      let method = "GET/" + mode;
+      $.ajax({
+        method: method,
+        url: "api.php",
+        success: data => { showRacks(data) }
+      });
+    });
+    $("#hard").on("click", function() {
+      mode = "hard";
+      scoreMultiple = 3;
+      document.getElementById("game").style.display = "block";
+      document.getElementById("start").style.display = "none";
+      let method = "GET/" + mode;
+      $.ajax({
+        method: method,
+        url: "api.php",
+        success: data => { showRacks(data) }
+      });
+    });
+    $("#score").append("Score: " + score);
+    $("#grabmore").on("click", function () {
+      let method = "GET/" + mode;
+      $.ajax({
+        method: method,
+        url: "api.php",
+        success: data => { showRacks(data) }
+      });
+    });
+  });
+</script>
+
 </html>
