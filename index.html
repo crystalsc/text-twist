@@ -58,6 +58,11 @@
     $("#response").html("");
     if(words.includes(solution.join(''))) {
       $("#response").append(`Correct!`);
+      $.ajax({
+            method: "GET",
+            url: "api.php",
+            success: data=>{ showRacks(data)}
+        });
     } else {
       $("#response").append(`Try Again!`);
     }
