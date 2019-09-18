@@ -5,23 +5,23 @@
         if ($verb == "GET"){
             $dbhandle = new PDO("sqlite:scrabble.sqlite") or die("Failed to open DB");
             if (!$dbhandle) die ($error);
-            // if (isset($_GET['mode'])) {
-            //     if ($_GET['mode']=="Hard") {
-            //         $query = "SELECT rack, weight, words FROM racks where weight > 30 order by random() limit 1";
-            //     }
-            //     else if ($_GET['mode']=="Medium") {
-            //         $query = "SELECT rack, weight, words FROM racks where weight > 15 and weight <= 30 order by random() limit 1";
-            //     } else {
-            //         $query = "SELECT rack, weight, words FROM racks where weight <= 15 order by random() limit 1";
-            //     }
-            // } else {
-            //     $query = "SELECT rack, weight, words FROM racks where weight <= 15 order by random() limit 1";
-            // }
-            $query = "CREATE TABLE results (
-                date_submitted TEXT PRIMARY KEY,
-                user TEXT NOT NULL,
-                score INTEGER NOT NULL
-            )";
+            if (isset($_GET['mode'])) {
+                if ($_GET['mode']=="Hard") {
+                    $query = "SELECT rack, weight, words FROM racks where weight > 30 order by random() limit 1";
+                }
+                else if ($_GET['mode']=="Medium") {
+                    $query = "SELECT rack, weight, words FROM racks where weight > 15 and weight <= 30 order by random() limit 1";
+                } else {
+                    $query = "SELECT rack, weight, words FROM racks where weight <= 15 order by random() limit 1";
+                }
+            } else {
+                $query = "SELECT rack, weight, words FROM racks where weight <= 15 order by random() limit 1";
+            }
+            // $query = "CREATE TABLE results (
+            //     date_submitted TEXT PRIMARY KEY,
+            //     user TEXT NOT NULL,
+            //     score INTEGER NOT NULL
+            // )";
             // $query = "SELECT rack, weight, words FROM racks where weight > 30 order by random() limit 1";
             $statement = $dbhandle->prepare($query);
             $statement->execute();

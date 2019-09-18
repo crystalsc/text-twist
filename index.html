@@ -5,14 +5,15 @@
   <title>Text Twist</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="shortcut icon" href="faveicon.ico" />
+  <link rel="shortcut icon" href="faveicon.ico" />
   <style>
     html,
-body,
-header,
-.view {
-    background: rgb(233, 233, 233);
+    body,
+    header,
+    .view {
+      background: rgb(233, 233, 233);
     }
+
     .side {
       width: 70%;
     }
@@ -39,25 +40,30 @@ header,
       text-align: center;
     }
 
-    #game, #compTimer, #results {
+    #game,
+    #compTimer,
+    #results {
       display: none;
     }
 
     .buttons {
-      margin:10px;
+      margin: 10px;
     }
-    a:hover {
-  cursor: pointer;
-  background:rgb(241, 238, 204);
-}
-.navbar {
-  box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
 
-    /* the rest of your styling */
-}
-.margins {
-  margin-top:15px;
-}
+    a:hover {
+      cursor: pointer;
+      background: rgb(241, 238, 204);
+    }
+
+    .navbar {
+      box-shadow: 0 2px 2px -2px rgba(0, 0, 0, .2);
+
+      /* the rest of your styling */
+    }
+
+    .margins {
+      margin-top: 15px;
+    }
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
@@ -65,70 +71,71 @@ header,
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-primary ">
-        <div class="navbar-brand">Text Twist</div>
-      </nav>
+  <nav class="navbar navbar-dark bg-primary ">
+    <div class="navbar-brand">Text Twist</div>
+  </nav>
   <div class="container margins">
-  <div class="d-flex justify-content-center">
-  <div class="side card shadow p-3 mb-5 bg-white rounded" id="start">
+    <div class="d-flex justify-content-center">
+      <div class="side card shadow p-3 mb-5 bg-white rounded" id="start">
         <div class="card-title">
-            <h1>Let's Get Twisty! </h1>
-            Select if you want to do competition mode and pick a difficulty setting to get started.
-          </div>
-          <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="competition">
-              <label class="form-check-label" for="competition">Competition Mode</label>
-            </div>
-      <div class="row buttons card-body">
-        
+          <h1>Let's Get Twisty! </h1>
+          Select if you want to do competition mode and pick a difficulty setting to get started.
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="competition">
+          <label class="form-check-label" for="competition">Competition Mode</label>
+        </div>
+        <div class="row buttons card-body">
+
           <button class="btn btn-primary buttons" id="easy">Easy</button>
           <button class="btn btn-primary buttons" id="med">Medium</button>
           <button class="btn btn-primary buttons" id="hard">Hard</button>
         </div>
-  </div>
+      </div>
 
-  <div class="side card shadow p-3 mb-5 bg-white rounded" id="game">
-      <div class="card-title">
+      <div class="side card shadow p-3 mb-5 bg-white rounded" id="game">
+        <div class="card-title">
           <h1>Let's Get Twisty! </h1>
         </div>
-    <div class="card-body">
-    <div id="score">
+        <div class="card-body">
+          <div id="score">
 
-    </div>
-    <div id="compTimer">
-    Time Remaining: <span id="countdown">05:00<span>
-    </div>
-    <div id="mode">
+          </div>
+          <div id="compTimer">
+            Time Remaining: <span id="countdown">05:00<span>
+          </div>
+          <div id="mode">
 
-    </div>
-    <div class="row" id="boxes">
+          </div>
+          <div class="row" id="boxes">
 
-    </div>
-    <div class="row" id="letters">
+          </div>
+          <div class="row" id="letters">
 
-    </div>
-    <div class="row buttons">
-      <button class="btn btn-primary" onclick="checkSolution()">Enter</button>
-    </div>
-    <div id="response">
+          </div>
+          <div class="row buttons">
+            <button class="btn btn-primary buttons" onclick="checkSolution()">Enter</button>
+            <button class="btn btn-primary buttons" onclick="endGame()">End Game</button>
+          </div>
+          <div id="response">
 
-    </div>
-  </div>
-  </div>
-  <div class="side card shadow p-3 mb-5 bg-white rounded" id="results">
-      <div class="card-title">
+          </div>
+        </div>
+      </div>
+      <div class="side card shadow p-3 mb-5 bg-white rounded" id="results">
+        <div class="card-title">
           <h1>Results</h1>
         </div>
-    <div class="card-body">
-      <div class="form-group">
-          <label for="name">Username</label>
-          <input type="password" class="form-control" id="name" placeholder="Password">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="name">Username</label>
+            <input type="password" class="form-control" id="name" placeholder="Password">
+          </div>
+          <button class="btn btn-primary" id="enterName">Enter Name</button>
         </div>
-        <button class="btn btn-primary" id="enterName">Enter Name</button>
+      </div>
+    </div>
   </div>
-  </div>
-  </div>
-</div>
 </body>
 <script>
 
@@ -147,12 +154,12 @@ header,
     $("#score").html("");
     if (words.includes(solution.join(''))) {
       $("#response").append(`Correct!`);
-      score = parseInt(score) + (parseInt(weight)*scoreMultiple);
+      score = parseInt(score) + (parseInt(weight) * scoreMultiple);
       $("#score").append("Score: " + score);
       $.ajax({
         method: "GET",
         url: "api.php",
-        data: { mode: mode},
+        data: { mode: mode },
         success: data => { showRacks(data) }
       });
     } else {
@@ -177,14 +184,14 @@ header,
     }
   }
 
-function startTimer(duration, display) {
-  let x = document.getElementById("competition").value;
+  function startTimer(duration, display) {
+    let x = document.getElementById("competition").value;
     if (x === "on") {
-    var start = Date.now(),
+      var start = Date.now(),
         diff,
         minutes,
         seconds;
-    function timer() {
+      function timer() {
         // get the number of seconds that have elapsed since 
         // startTimer() was called
         diff = duration - (((Date.now() - start) / 1000) | 0);
@@ -196,24 +203,28 @@ function startTimer(duration, display) {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.textContent = minutes + ":" + seconds; 
+        display.textContent = minutes + ":" + seconds;
 
         if (diff <= 0) {
-            // add one second so that the count down starts at the full duration
-            // example 05:00 not 04:59
-            start = Date.now() + 1000;
+          // add one second so that the count down starts at the full duration
+          // example 05:00 not 04:59
+          start = Date.now() + 1000;
         }
 
         if (minutes == 0 && seconds == 0) {
-          document.getElementById("game").style.display = "none";
-          document.getElementById("results").style.display = "block";
+          endGame();
         }
-    };
-    // we don't want to wait a full second before the timer starts
-    timer();
-    setInterval(timer, 1000);
+      };
+      // we don't want to wait a full second before the timer starts
+      timer();
+      setInterval(timer, 1000);
     }
-}
+  }
+
+  function endGame() {
+    document.getElementById("game").style.display = "none";
+    document.getElementById("results").style.display = "block";
+  }
 
 
   let showRacks = function (racks) {
@@ -241,11 +252,11 @@ function startTimer(duration, display) {
   $(document).ready(function () {
     document.getElementById("game").style.display = "none";
     document.getElementById("start").style.display = "block";
-  
-    $("#easy").on("click", function() {
+
+    $("#easy").on("click", function () {
       let fiveMinutes = 60 * 5;
-       let display = $('#countdown');
-    startTimer(fiveMinutes, display);
+      let display = $('#countdown');
+      startTimer(fiveMinutes, display);
       mode = "Easy";
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
@@ -253,13 +264,13 @@ function startTimer(duration, display) {
       $.ajax({
         method: "GET",
         url: "api.php",
-        data: { mode: "Easy"},
+        data: { mode: "Easy" },
         success: data => { showRacks(data) }
       });
     });
-    $("#med").on("click", function() {
+    $("#med").on("click", function () {
       let fiveMinutes = 60 * 5;
-       let display = $('#countdown');
+      let display = $('#countdown');
       mode = "Medium";
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
@@ -267,13 +278,13 @@ function startTimer(duration, display) {
       $.ajax({
         method: "GET",
         url: "api.php",
-        data: { mode: "Medium"},
+        data: { mode: "Medium" },
         success: data => { showRacks(data) }
       });
     });
-    $("#hard").on("click", function() {
+    $("#hard").on("click", function () {
       let fiveMinutes = 60 * 5;
-       let display = $('#countdown');
+      let display = $('#countdown');
       mode = "Hard";
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
@@ -281,7 +292,7 @@ function startTimer(duration, display) {
       $.ajax({
         method: "GET",
         url: "api.php",
-        data: { mode: "Hard"},
+        data: { mode: "Hard" },
         success: data => { showRacks(data); }
       });
     });
@@ -295,12 +306,15 @@ function startTimer(duration, display) {
     });
     $("#name").on("click", function () {
       let x = document.getElementById("name").value;
-      $.ajax({
-        method: "POST",
-        url: "api.php",
-        data: { name: x, score: score, date: Date.now() },
-        success: data => { showRacks(data) }
-      });
+      if (x) {
+        $.ajax({
+          method: "POST",
+          url: "api.php",
+          data: { name: x, score: score, date: Date.now() },
+          success: data => { showRacks(data) }
+        });
+      }
+
     });
   });
 </script>
