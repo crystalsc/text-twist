@@ -85,9 +85,6 @@
         }   
       }
 
-    $(document).ready(function(){
-
-      
       let showRacks = function(racks){
         console.log(racks);
         $("#boxes").html('');
@@ -103,6 +100,8 @@
         })
        
       }
+
+    $(document).ready(function(){
 
       $("#grabmore").on("click", function(){
         $.ajax({
