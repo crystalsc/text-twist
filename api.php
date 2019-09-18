@@ -50,7 +50,8 @@ function console_log($output, $with_script_tags = true) {
             if (isset($_POST["date"])){
                 $date = $_POST["date"];
             }
-            $query = "INSERT INTO results (user,score,date_submitted) VALUES(" + $user +"," + $score + "," +$date + ")";
+            //$query = "INSERT INTO results (user,score,date_submitted) VALUES(" + $user +"," + $score + "," +$date + ")";
+            $query = "insert into results (user,score,date_submitted) values(" + $user + "," + $score + "," + $date + ")";
             echo $query;
             echo $user;
             echo "hi";
