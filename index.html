@@ -55,6 +55,9 @@ header,
 
     /* the rest of your styling */
 }
+.margins {
+  margin-top:15px;
+}
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
@@ -65,7 +68,7 @@ header,
     <nav class="navbar navbar-dark bg-primary ">
         <div class="navbar-brand">Text Twist</div>
       </nav>
-  <div class="container">
+  <div class="container margins">
   <div class="d-flex justify-content-center">
   <div class="side card shadow p-3 mb-5 bg-white rounded" id="start">
         <div class="card-title">
@@ -162,6 +165,28 @@ header,
     }
   }
 
+  let setTimer = function() {
+    let x = document.getElementById("competition").value;
+    if (x === true) {
+      document.getElementById("compTimer").style.display = "block";
+      window.onload = function() {
+      var hour = 2;
+      var sec = 60;
+      setInterval(function() {
+        document.getElementById("timer").innerHTML = hour + " : " + sec;
+        sec--;
+        if (sec == 00) {
+          hour--;
+          sec = 60;
+          if (hour == 0) {
+            hour = 2;
+          }
+        }
+      }, 1000);
+    }
+    }
+  }
+
   let showRacks = function (racks) {
     console.log(racks);
     letterCounter = 0;
@@ -187,25 +212,7 @@ header,
   $(document).ready(function () {
     document.getElementById("game").style.display = "none";
     document.getElementById("start").style.display = "block";
-    let x = document.getElementById("competition").value;
-    if (x === true) {
-      document.getElementById("compTimer").style.display = "block";
-      window.onload = function() {
-      var hour = 2;
-      var sec = 60;
-      setInterval(function() {
-        document.getElementById("timer").innerHTML = hour + " : " + sec;
-        sec--;
-        if (sec == 00) {
-          hour--;
-          sec = 60;
-          if (hour == 0) {
-            hour = 2;
-          }
-        }
-      }, 1000);
-    }
-    }
+  
     $("#easy").on("click", function() {
       mode = "Easy";
       document.getElementById("game").style.display = "block";
