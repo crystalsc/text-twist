@@ -96,7 +96,7 @@ header,
 
     </div>
     <div id="compTimer">
-    Time Remaining: <span id="timer">05:00<span>
+    Time Remaining: <span id="countdown">05:00<span>
     </div>
     <div id="mode">
 
@@ -165,28 +165,44 @@ header,
     }
   }
 
-  let setTimer = function() {
+  function countdown() {
     let x = document.getElementById("competition").value;
-    console.log(x);
     if (x === "on") {
-      document.getElementById("compTimer").style.display = "block";
-      window.onload = function() {
-      var hour = 2;
-      var sec = 60;
-      setInterval(function() {
-        document.getElementById("timer").innerHTML = hour + " : " + sec;
-        sec--;
-        if (sec == 00) {
-          hour--;
-          sec = 60;
-          if (hour == 0) {
-            hour = 2;
-          }
-        }
-      }, 1000);
+         document.getElementById("countdown").style.display = "block";
+         time = document.getElementById('countdown').innerHTML;
+         timeArray = time.split(':')
+         seconds = timeToSeconds(timeArray);
+
+         if (seconds == '') {
+              temp = document.getElementById('countdown');
+              temp.innerHTML = "00:00";
+
+              return;
+         }
+         seconds--;
+         temp = document.getElementById('countdown');
+         temp.innerHTML= secondsToTime(seconds);
+         timeoutMyOswego = setTimeout(countdown, 1000);   
+    }     
     }
+
+    function timeToSeconds(timeArray) {  
+         var minutes = (timeArray[0] * 1);
+         var seconds = (minutes * 60) + (timeArray[1] * 1);
+         return seconds;
     }
-  }
+
+    function secondsToTime(secs) {
+         var hours = Math.floor(secs / (60 * 60));
+         hours = hours < 10 ? '0' + hours : hours;
+         var divisor_for_minutes = secs % (60 * 60);
+         var minutes = Math.floor(divisor_for_minutes / 60);
+         minutes = minutes < 10 ? '0' + minutes : minutes;
+         var divisor_for_seconds = divisor_for_minutes % 60;
+         var seconds = Math.ceil(divisor_for_seconds);
+         seconds = seconds < 10 ? '0' + seconds : seconds;            
+         return  minutes + ':' + seconds;   
+    }
 
   let showRacks = function (racks) {
     console.log(racks);
@@ -215,7 +231,7 @@ header,
     document.getElementById("start").style.display = "block";
   
     $("#easy").on("click", function() {
-      setTimer();
+      countdown();
       mode = "Easy";
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
@@ -228,7 +244,7 @@ header,
       });
     });
     $("#med").on("click", function() {
-      setTimer();
+      countdown();
       mode = "Medium";
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
@@ -241,7 +257,7 @@ header,
       });
     });
     $("#hard").on("click", function() {
-      setTimer();
+      countdown();
       mode = "Hard";
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
