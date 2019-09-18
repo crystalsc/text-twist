@@ -94,6 +94,12 @@
       }
 
       let showRacks = function(racks){
+        letterCounter = 0;
+        dict = {};
+        dictSquare = {};
+        solution = [];
+        words = [];
+        weight = 0;
         $("#boxes").html('');
         $("#letters").html('');
         racks.map(rack=>{
