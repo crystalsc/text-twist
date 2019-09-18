@@ -64,7 +64,7 @@
     if(words.includes(solution.join(''))) {
       $("#response").append(`Correct!`);
       score += weight;
-      $("score").append("Score: " + score);
+      $("#score").append("Score: " + score);
       $.ajax({
             method: "GET",
             url: "api.php",
@@ -109,7 +109,7 @@
       }
 
     $(document).ready(function(){
-      $("score").append("Score: " + score);
+      $("#score").append("Score: " + score);
       $("#grabmore").on("click", function(){
         $.ajax({
             method: "GET",
