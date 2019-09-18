@@ -203,7 +203,7 @@
 
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
-        console.log(minutes + ":" + seconds);
+        document.getElementById("countdown").innerHTML = minutes + ":" + seconds;
 
         display.textContent = minutes + ":" + seconds;
 
@@ -257,7 +257,7 @@
 
     $("#easy").on("click", function () {
       let fiveMinutes = 60 * 5;
-      let display = $('#countdown');
+      let display = $('countdown');
       startTimer(fiveMinutes, display);
       mode = "Easy";
       document.getElementById("game").style.display = "block";
