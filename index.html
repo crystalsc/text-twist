@@ -38,7 +38,7 @@
     </div>
     <div class="row">
         <button id="grabmore">New word</button>
-        <button onclick="checkSolution()">New word</button>
+        <button onclick="checkSolution()">Enter</button>
     </div>
     <div id="response">
 
@@ -54,6 +54,7 @@
   let score = 0;
 
   function checkSolution() {
+    $("#response").html("");
     if(words.includes(solution.join(''))) {
       $("#response").append(`Correct!`);
     } else {
@@ -87,6 +88,7 @@
         $("#letters").html('');
         racks.map(rack=>{
           words = rack.words.split('@@');
+          console.log(words);
           rack.rack.split('').forEach(function (item, index) {
             dict[index] = item;
             $("#boxes").append(`<a class="square" onclick="clickSquare(${index})" id="square-${index}"></a>`);
