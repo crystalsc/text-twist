@@ -48,6 +48,10 @@ header,
     .buttons {
       margin: 10px;
     }
+    a:hover {
+  cursor: pointer;
+  background:palegoldenrod;
+}
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
@@ -96,7 +100,7 @@ header,
   let words = [];
   let score = 0;
   let weight = 0;
-  let mode = "easy";
+  let mode = "Easy";
   let scoreMultiple = 1;
 
   function checkSolution() {
@@ -109,6 +113,7 @@ header,
       $.ajax({
         method: "GET",
         url: "api.php",
+        data: { mode: mode},
         success: data => { showRacks(data) }
       });
     } else {
@@ -160,32 +165,29 @@ header,
     document.getElementById("start").style.display = "block";
     $("#easy").on("click", function() {
       mode = "Easy";
-      scoreMultiple = 1;
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
       $("#mode").append("Mode: " + mode);
       $.ajax({
         method: "GET",
         url: "api.php",
-        data: { mode: "EASY"},
+        data: { mode: "Easy"},
         success: data => { showRacks(data) }
       });
     });
     $("#med").on("click", function() {
       mode = "Medium";
-      scoreMultiple = 2;
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
       $("#mode").append("Mode: " + mode);
       $.ajax({
         method: "GET",
         url: "api.php",
-        data: { mode: "MED"},
+        data: { mode: "Medium"},
         success: data => { showRacks(data) }
       });
     });
     $("#hard").on("click", function() {
-      scoreMultiple = 3;
       mode = "Hard";
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
@@ -193,7 +195,7 @@ header,
       $.ajax({
         method: "GET",
         url: "api.php",
-        data: { mode: "HARD"},
+        data: { mode: "Hard"},
         success: data => { showRacks(data); }
       });
     });
