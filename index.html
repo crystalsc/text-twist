@@ -175,7 +175,7 @@
         method: "GET",
         url: "api.php",
         data: { mode: "HARD"},
-        success: data => { showRacks(data) }
+        success: data => { showRacks(data); console.log(data); }
       });
     });
     $("#score").append("Score: " + score);
