@@ -151,6 +151,7 @@
       $.ajax({
         method: "GET",
         url: "api.php",
+        data: { mode: "EASY"},
         success: data => { showRacks(data) }
       });
     });
@@ -162,6 +163,7 @@
       $.ajax({
         method: "GET",
         url: "api.php",
+        data: { mode: "MED"},
         success: data => { showRacks(data) }
       });
     });
