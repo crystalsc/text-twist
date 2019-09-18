@@ -165,44 +165,23 @@ header,
     }
   }
 
-  function countdown() {
-    let x = document.getElementById("competition").value;
-    if (x === "on") {
-         document.getElementById("compTimer").style.display = "block";
-         time = document.getElementById('countdown').innerHTML;
-         timeArray = time.split(':')
-         seconds = timeToSeconds(timeArray);
+  function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
 
-         if (seconds == '') {
-              temp = document.getElementById('countdown');
-              temp.innerHTML = "00:00";
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
 
-              return;
-         }
-         seconds--;
-         temp = document.getElementById('countdown');
-         temp.innerHTML= secondsToTime(seconds);
-         timeoutMyOswego = setTimeout(countdown, 1000);   
-    }     
-    }
+        display.text(minutes + ":" + seconds);
 
-    function timeToSeconds(timeArray) {  
-         var minutes = (timeArray[0] * 1);
-         var seconds = (minutes * 60) + (timeArray[1] * 1);
-         return seconds;
-    }
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
 
-    function secondsToTime(secs) {
-         var hours = Math.floor(secs / (60 * 60));
-         hours = hours < 10 ? '0' + hours : hours;
-         var divisor_for_minutes = secs % (60 * 60);
-         var minutes = Math.floor(divisor_for_minutes / 60);
-         minutes = minutes < 10 ? '0' + minutes : minutes;
-         var divisor_for_seconds = divisor_for_minutes % 60;
-         var seconds = Math.ceil(divisor_for_seconds);
-         seconds = seconds < 10 ? '0' + seconds : seconds;            
-         return  minutes + ':' + seconds;   
-    }
 
   let showRacks = function (racks) {
     console.log(racks);
@@ -231,7 +210,9 @@ header,
     document.getElementById("start").style.display = "block";
   
     $("#easy").on("click", function() {
-      countdown();
+      let fiveMinutes = 60 * 5;
+       let display = $('#countdown');
+    startTimer(fiveMinutes, display);
       mode = "Easy";
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
@@ -244,7 +225,8 @@ header,
       });
     });
     $("#med").on("click", function() {
-      countdown();
+      let fiveMinutes = 60 * 5;
+       let display = $('#countdown');
       mode = "Medium";
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
@@ -257,7 +239,8 @@ header,
       });
     });
     $("#hard").on("click", function() {
-      countdown();
+      let fiveMinutes = 60 * 5;
+       let display = $('#countdown');
       mode = "Hard";
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
