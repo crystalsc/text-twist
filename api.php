@@ -42,14 +42,13 @@
             if (isset($_POST["date"])){
                 $date = $_POST["date"];
             }
-            // $query = "INSERT INTO results (user,score,date_submitted) VALUES($user,$score,$date)";
-            $query = "SELECT rack, weight, words FROM racks where weight <= 15 order by random() limit 1";
+            $query = "INSERT INTO results (user,score,date_submitted) VALUES($user,$score,$date)";
             $statement = $dbhandle->prepare($query);
             $statement->execute();
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             header('HTTP/1.1 200 OK');
             header('Content-Type: application/json');
-            echo "$author: $content";
+            echo "worked?";
         } else {
             echo "USAGE GET or POST";
         }
