@@ -39,7 +39,7 @@ header,
       text-align: center;
     }
 
-    #game, #compTimer {
+    #game, #compTimer, #results {
       display: none;
     }
 
@@ -115,6 +115,18 @@ header,
     </div>
   </div>
   </div>
+  <div class="side card shadow p-3 mb-5 bg-white rounded" id="results">
+      <div class="card-title">
+          <h1>Results</h1>
+        </div>
+    <div class="card-body">
+      <div class="form-group">
+          <label for="name">Username</label>
+          <input type="password" class="form-control" id="name" placeholder="Password">
+        </div>
+        <button class="btn btn-primary" id="enterName">Enter Name</button>
+  </div>
+  </div>
   </div>
 </div>
 </body>
@@ -165,24 +177,41 @@ header,
     }
   }
 
-  function startTimer(duration, display) {
-    let x = document.getElementById("competition").value;
+function startTimer(duration, display) {
+  let x = document.getElementById("competition").value;
     if (x === "on") {
-    document.getElementById("compTimer").style.display = "block";
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
+    var start = Date.now(),
+        diff,
+        minutes,
+        seconds;
+    function timer() {
+        // get the number of seconds that have elapsed since 
+        // startTimer() was called
+        diff = duration - (((Date.now() - start) / 1000) | 0);
+
+        // does the same job as parseInt truncates the float
+        minutes = (diff / 60) | 0;
+        seconds = (diff % 60) | 0;
 
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.text(minutes + ":" + seconds);
+        display.textContent = minutes + ":" + seconds; 
 
-        if (--timer < 0) {
-            timer = duration;
+        if (diff <= 0) {
+            // add one second so that the count down starts at the full duration
+            // example 05:00 not 04:59
+            start = Date.now() + 1000;
         }
-    }, 1000);
+
+        if (minutes == 0 && seconds == 0) {
+          document.getElementById("game").style.display = "none";
+          document.getElementById("results").style.display = "block";
+        }
+    };
+    // we don't want to wait a full second before the timer starts
+    timer();
+    setInterval(timer, 1000);
     }
 }
 
@@ -261,6 +290,15 @@ header,
       $.ajax({
         method: "GET",
         url: "api.php",
+        success: data => { showRacks(data) }
+      });
+    });
+    $("#name").on("click", function () {
+      let x = document.getElementById("name").value;
+      $.ajax({
+        method: "POST",
+        url: "api.php",
+        data: { name: x, score: score, date: Date.now() },
         success: data => { showRacks(data) }
       });
     });
