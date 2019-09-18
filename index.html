@@ -43,20 +43,21 @@
   <script>
 
   let letterCounter = 0;
-  let openSpots = [];
+  let dict = {};
+  let dictSquare = {};
 
-  function clickLetter(index,item) {
+  function clickLetter(index) {
     $("#letter-" + index).html('');
-    openSpots.push(index);
-    document.getElementById("square-" + letterCounter).append(`${item}`);
+    document.getElementById("square-" + letterCounter).append(dict[index]);
+    dictSquare[letterCounter] = index;
     letterCounter++;
   }
 
-      function clickSquare(index,item) {
+      function clickSquare(index) {
         if (item && index==letterCounter-1) {
           letterCounter--;
+          document.getElementById("letter-" + dictSquare[letterCounter]).append(dict[dictSquare[letterCounter]]);
           $("#square-" + index).html('');
-          document.getElementById("letter-" + openSpots[0]).append(item);
           openSpots.pop();
         }   
       }
@@ -69,8 +70,9 @@
         $("#letters").html('');
         racks.map(rack=>{
           rack.rack.split('').forEach(function (item, index) {
-            $("#boxes").append(`<a class="square" onclick="clickSquare(${index},'${item}')" id="square-${index}"></a>`);
-            $("#letters").append(`<a class="letter" onclick="clickLetter(${index},'${item}')" id="letter-${index}">${item}</a>`);
+            dict[index] = item;
+            $("#boxes").append(`<a class="square" onclick="clickSquare(${index})" id="square-${index}"></a>`);
+            $("#letters").append(`<a class="letter" onclick="clickLetter(${index})" id="letter-${index}">${item}</a>`);
           });
         })
        
