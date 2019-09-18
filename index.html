@@ -214,6 +214,7 @@ header,
     document.getElementById("start").style.display = "block";
   
     $("#easy").on("click", function() {
+      setTimer();
       mode = "Easy";
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
@@ -226,6 +227,7 @@ header,
       });
     });
     $("#med").on("click", function() {
+      setTimer();
       mode = "Medium";
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
@@ -238,6 +240,7 @@ header,
       });
     });
     $("#hard").on("click", function() {
+      setTimer();
       mode = "Hard";
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
