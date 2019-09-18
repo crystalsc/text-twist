@@ -31,6 +31,9 @@
   </head>
   <body>
     <h1>Text Twist</h1>
+    <div class="side" id="score">
+      
+    </div>
     <div class="row side" id="boxes">
       
     </div>
@@ -57,9 +60,11 @@
 
   function checkSolution() {
     $("#response").html("");
+    $("#score").html("");
     if(words.includes(solution.join(''))) {
       $("#response").append(`Correct!`);
       score += weight;
+      $("score").append("Score: " + score);
       $.ajax({
             method: "GET",
             url: "api.php",
@@ -88,7 +93,6 @@
       }
 
       let showRacks = function(racks){
-        console.log(racks);
         $("#boxes").html('');
         $("#letters").html('');
         racks.map(rack=>{
@@ -105,7 +109,7 @@
       }
 
     $(document).ready(function(){
-
+      $("score").append("Score: " + score);
       $("#grabmore").on("click", function(){
         $.ajax({
             method: "GET",
