@@ -54,7 +54,7 @@
   }
 
       function clickSquare(index) {
-        if (item && index==letterCounter-1) {
+        if (index==letterCounter-1) {
           letterCounter--;
           document.getElementById("letter-" + dictSquare[letterCounter]).append(dict[dictSquare[letterCounter]]);
           $("#square-" + index).html('');
