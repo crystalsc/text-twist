@@ -148,9 +148,8 @@
       scoreMultiple = 1;
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
-      let method = "GET/" + mode;
       $.ajax({
-        method: method,
+        method: "GET",
         url: "api.php",
         success: data => { showRacks(data) }
       });
@@ -160,31 +159,27 @@
       scoreMultiple = 2;
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
-      let method = "GET/" + mode;
       $.ajax({
-        method: method,
+        method: "GET",
         url: "api.php",
         success: data => { showRacks(data) }
       });
     });
     $("#hard").on("click", function() {
-      mode = "hard";
       scoreMultiple = 3;
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
-      let method = "HARD";
-      console.log(method);
       $.ajax({
-        method: "HARD",
+        method: "GET",
         url: "api.php",
-        success: data => { showRacks(data); console.log(data) }
+        data: { mode: "HARD"},
+        success: data => { showRacks(data) }
       });
     });
     $("#score").append("Score: " + score);
     $("#grabmore").on("click", function () {
-      let method = "GET/" + mode;
       $.ajax({
-        method: method,
+        method: "GET",
         url: "api.php",
         success: data => { showRacks(data) }
       });
