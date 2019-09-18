@@ -29,25 +29,25 @@
             header('Content-Type: application/json');
             echo json_encode($results);
         } else if ($verb == "POST"){
-            $user = "anonymous";
-            $score = 0;
-            $date = 0;
-            if (isset($_POST["user"])){
-                $user = $_POST["user"];
-            }
-            if (isset($_POST["score"])){
-                $score = $_POST["score"];
-            }
-            if (isset($_POST["date"])){
-                $date = $_POST["date"];
-            }
-            $query = "INSERT INTO results (user,score,date_submitted) VALUES($user,$score,$date)";
-            $statement = $dbhandle->prepare($query);
-            $statement->execute();
-            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            // $user = "anonymous";
+            // $score = 0;
+            // $date = 0;
+            // if (isset($_POST["user"])){
+            //     $user = $_POST["user"];
+            // }
+            // if (isset($_POST["score"])){
+            //     $score = $_POST["score"];
+            // }
+            // if (isset($_POST["date"])){
+            //     $date = $_POST["date"];
+            // }
+            // $query = "INSERT INTO results (user,score,date_submitted) VALUES($user,$score,$date)";
+            // $statement = $dbhandle->prepare($query);
+            // $statement->execute();
+            // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             header('HTTP/1.1 200 OK');
             header('Content-Type: application/json');
-            echo json_encode($results);
+            echo "it":"works";
         } else {
             echo "USAGE GET or POST";
         }
