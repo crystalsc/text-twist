@@ -42,7 +42,8 @@
             if (isset($_POST["date"])){
                 $date = $_POST["date"];
             }
-            $query = "INSERT INTO results (user,score,date_submitted) VALUES($user,$score,$date)";
+            // $query = "INSERT INTO results (user,score,date_submitted) VALUES($user,$score,$date)";
+            $query = "SELECT rack, weight, words FROM racks where weight <= 15 order by random() limit 1";
             $statement = $dbhandle->prepare($query);
             $statement->execute();
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
