@@ -2,7 +2,7 @@
 
         $verb = $_SERVER["REQUEST_METHOD"];
         
-        if ($verb == "GET/easy"){
+        if ($verb == "EASY"){
             //this is the basic way of getting a database handler from PDO, PHP's built in quasi-ORM
             $dbhandle = new PDO("sqlite:scrabble.sqlite") or die("Failed to open DB");
             if (!$dbhandle) die ($error);
@@ -31,7 +31,7 @@
             header('Content-Type: application/json');
             //this creates json and gives it back to the browser
             echo json_encode($results);
-        } else if ($verb == "GET/med") {
+        } else if ($verb == "MED") {
             $dbhandle = new PDO("sqlite:scrabble.sqlite") or die("Failed to open DB");
             if (!$dbhandle) die ($error);
             $query = "SELECT rack, weight, words where weight > 5 and weight <= 10 FROM racks order by random() limit 1";
@@ -42,7 +42,7 @@
             header('Content-Type: application/json');
             echo json_encode($results);
 
-        } else if ($verb == "GET/hard") {
+        } else if ($verb == "HARD") {
             $dbhandle = new PDO("sqlite:scrabble.sqlite") or die("Failed to open DB");
             if (!$dbhandle) die ($error);
             $query = "SELECT rack, max(weight), words where weight > 10 FROM racks order by random() limit 1";

@@ -172,10 +172,10 @@
       scoreMultiple = 3;
       document.getElementById("game").style.display = "block";
       document.getElementById("start").style.display = "none";
-      let method = "GET/" + mode;
+      let method = "HARD";
       console.log(method);
       $.ajax({
-        method: method,
+        method: "HARD",
         url: "api.php",
         success: data => { showRacks(data); console.log(data) }
       });
