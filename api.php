@@ -17,12 +17,6 @@
             } else {
                 $query = "SELECT rack, weight, words FROM racks where weight <= 15 order by random() limit 1";
             }
-            // $query = "CREATE TABLE results (
-            //     date_submitted TEXT PRIMARY KEY,
-            //     user TEXT NOT NULL,
-            //     score INTEGER NOT NULL
-            // )";
-            // $query = "SELECT rack, weight, words FROM racks where weight > 30 order by random() limit 1";
             $statement = $dbhandle->prepare($query);
             $statement->execute();
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
