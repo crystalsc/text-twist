@@ -45,9 +45,9 @@
             $query = 'INSERT INTO results (date_submitted,user,score) VALUES(:date_submitted,:user,:score)';
             // echo $query;
             $statement = $dbhandle->prepare($query);
-            $statement->bindParam(':date_submitted', $date_submitted);
-            $statement->bindParam(':user',$user);
-            $statement->bindParam(':score',$score);
+            $statement->bindParam(':date_submitted', 'anonymous');
+            $statement->bindParam(':user', 'crystal');
+            $statement->bindParam(':score', 6);
             if($statement->execute()) {
                 echo "success";
             }else {
