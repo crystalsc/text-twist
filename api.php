@@ -33,21 +33,18 @@
             $user = "anonymous";
             $score = 0;
             $date_submitted = "10";
-            // if (isset($_POST["user"])){
-            //     $user = $_POST["user"];
-            // }
-            // if (isset($_POST["score"])){
-            //     $score = $_POST["score"];
-            // }
-            // if (isset($_POST["date"])){
-            //     $date = $_POST["date"];
-            // }
+            if (isset($_POST["user"])){
+                $user = $_POST["user"];
+            }
+            if (isset($_POST["score"])){
+                $score = $_POST["score"];
+            }
+            if (isset($_POST["date"])){
+                $date = $_POST["date"];
+            }
             $query = 'INSERT INTO results (date_submitted,user,score) VALUES(:date_submitted,:user,:score)';
             echo $query;
             $statement = $dbhandle->prepare($query);
-            // $statement->bindValue(":date_submitted",$date_submitted);
-            // $statement->bindValue(":user",$user);
-            // $statement->bindValue(":score",$score);
             $statement->execute([
                 ':date_submitted' => $date_submitted,
                 ':user' => $user,
@@ -56,7 +53,7 @@
             // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             // header('HTTP/1.1 200 OK');
             // header('Content-Type: application/json');
-            echo "it works";
+            echo $dbhandle->lastInsertId();
         } else {
             echo "USAGE GET or POST";
         }
