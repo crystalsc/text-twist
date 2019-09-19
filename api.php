@@ -51,7 +51,7 @@ function console_log($output, $with_script_tags = true) {
             //     $date = $_POST["date"];
             // }
             //$query = "INSERT INTO results (user,score,date_submitted) VALUES(" + $user +"," + $score + "," +$date + ")";
-            $query = "insert into results (user,score,date_submitted) values(" + $user + "," + $score + "," + $date + ")";
+            $query = "insert into results (user,score,date_submitted) values(" . $user . "," . $score + "," . $date . ")";
             echo $query;
             echo $user;
             echo "insert into results (user,score,date_submitted) values("+ $user + "," + $score + "," + $date + ")";
