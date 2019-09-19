@@ -29,31 +29,31 @@
             header('Content-Type: application/json');
             echo json_encode($results);
         } else if ($verb == "POST"){
-            // echo "posting";
-            $user = "anonymous";
-            $score = 0;
-            $date_submitted = "10";
-            if (isset($_POST["user"])){
-                $user = $_POST["user"];
-            }
-            if (isset($_POST["score"])){
-                $score = $_POST["score"];
-            }
-            if (isset($_POST["date"])){
-                $date = $_POST["date"];
-            }
-            $query = 'INSERT INTO results (date_submitted,user,score) VALUES(:date_submitted,:user,:score)';
-            echo $query;
-            $statement = $dbhandle->prepare($query);
-            $statement->execute([
-                ':date_submitted' => $date_submitted,
-                ':user' => $user,
-                ':score' => $score
-            ]);
-            // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-            // header('HTTP/1.1 200 OK');
-            // header('Content-Type: application/json');
-            echo $dbhandle->lastInsertId();
+            echo "posting";
+            // $user = "anonymous";
+            // $score = 0;
+            // $date_submitted = "10";
+            // if (isset($_POST["user"])){
+            //     $user = $_POST["user"];
+            // }
+            // if (isset($_POST["score"])){
+            //     $score = $_POST["score"];
+            // }
+            // if (isset($_POST["date"])){
+            //     $date = $_POST["date"];
+            // }
+            // $query = 'INSERT INTO results (date_submitted,user,score) VALUES(:date_submitted,:user,:score)';
+            // echo $query;
+            // $statement = $dbhandle->prepare($query);
+            // $statement->execute([
+            //     ':date_submitted' => $date_submitted,
+            //     ':user' => $user,
+            //     ':score' => $score
+            // ]);
+            // // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            // // header('HTTP/1.1 200 OK');
+            // // header('Content-Type: application/json');
+            // echo $dbhandle->lastInsertId();
         } else {
             echo "USAGE GET or POST";
         }
