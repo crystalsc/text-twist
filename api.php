@@ -50,9 +50,9 @@
             $statement->bindValue(":score",$score);
             $statement->execute();
             // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-            header('HTTP/1.1 200 OK');
-            header('Content-Type: application/json');
-            echo json_encode({"It":"works"});
+            // header('HTTP/1.1 200 OK');
+            // header('Content-Type: application/json');
+            // echo json_encode({"It":"works"});
         } else {
             echo "USAGE GET or POST";
         }
