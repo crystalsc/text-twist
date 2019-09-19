@@ -29,7 +29,7 @@
             header('Content-Type: application/json');
             echo json_encode($results);
         } else if ($verb == "POST"){
-            echo "posting";
+            // echo "posting";
             $user = "anonymous";
             $score = 0;
             $date_submitted = "10";
