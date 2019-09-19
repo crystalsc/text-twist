@@ -41,16 +41,16 @@ function console_log($output, $with_script_tags = true) {
             $user = "anonymous";
             $score = 0;
             $date = "10";
-            if (isset($_POST["user"])){
-                $user = $_POST["user"];
-            }
-            if (isset($_POST["score"])){
-                $score = $_POST["score"];
-            }
-            if (isset($_POST["date"])){
-                $date = $_POST["date"];
-            }
-            $query = "INSERT INTO results (user,score,date_submitted) VALUES(".$user.",".$score.",".$date.")";
+            // if (isset($_POST["user"])){
+            //     $user = $_POST["user"];
+            // }
+            // if (isset($_POST["score"])){
+            //     $score = $_POST["score"];
+            // }
+            // if (isset($_POST["date"])){
+            //     $date = $_POST["date"];
+            // }
+            $query = "INSERT INTO results (date_submitted,user,score) VALUES(".$date.",".$user.",".$score.")";
             // echo $query;
             $statement = $dbhandle->prepare($query);
             $statement->execute();
