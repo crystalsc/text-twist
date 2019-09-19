@@ -38,29 +38,29 @@ function console_log($output, $with_script_tags = true) {
             header('Content-Type: application/json');
             echo json_encode($results);
         } else if ($verb == "POST"){
-            $user = "anonymous";
-            $score = 0;
-            $date_submitted = "10";
-            // if (isset($_POST["user"])){
-            //     $user = $_POST["user"];
-            // }
-            // if (isset($_POST["score"])){
-            //     $score = $_POST["score"];
-            // }
-            // if (isset($_POST["date"])){
-            //     $date = $_POST["date"];
-            // }
-            $query = "INSERT INTO results (date_submitted,user,score) VALUES(:date_submitted,:user,:score)";
-            echo $query;
-            $statement = $dbhandle->prepare($query);
-            $statement->bindValue(":date_submitted",$date_submitted);
-            $statement->bindValue(":user",$user);
-            $statement->bindValue(":score",$score);
-            $statement->execute();
-            // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-            header('HTTP/1.1 200 OK');
-            header('Content-Type: application/json');
-            echo json_encode({"It":"works"});
+            // $user = "anonymous";
+            // $score = 0;
+            // $date_submitted = "10";
+            // // if (isset($_POST["user"])){
+            // //     $user = $_POST["user"];
+            // // }
+            // // if (isset($_POST["score"])){
+            // //     $score = $_POST["score"];
+            // // }
+            // // if (isset($_POST["date"])){
+            // //     $date = $_POST["date"];
+            // // }
+            // $query = "INSERT INTO results (date_submitted,user,score) VALUES(:date_submitted,:user,:score)";
+            // echo $query;
+            // $statement = $dbhandle->prepare($query);
+            // $statement->bindValue(":date_submitted",$date_submitted);
+            // $statement->bindValue(":user",$user);
+            // $statement->bindValue(":score",$score);
+            // $statement->execute();
+            // // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            // header('HTTP/1.1 200 OK');
+            // header('Content-Type: application/json');
+            // echo json_encode({"It":"works"});
         } else {
             echo "USAGE GET or POST";
         }
