@@ -29,7 +29,7 @@
             header('Content-Type: application/json');
             echo json_encode($results);
         } else if ($verb == "POST"){
-            echo "posting";
+            // echo "posting";
             $user = "anonymous";
             $score = 0;
             $date_submitted = "10";
@@ -42,17 +42,21 @@
             // if (isset($_POST["date"])){
             //     $date = $_POST["date"];
             // }
-            $query = "INSERT INTO results (date_submitted,user,score) VALUES(:date_submitted,:user,:score)";
+            $query = 'INSERT INTO results (date_submitted,user,score) VALUES(:date_submitted,:user,:score)';
             echo $query;
             $statement = $dbhandle->prepare($query);
-            $statement->bindValue(":date_submitted",$date_submitted);
-            $statement->bindValue(":user",$user);
-            $statement->bindValue(":score",$score);
-            $statement->execute();
+            // $statement->bindValue(":date_submitted",$date_submitted);
+            // $statement->bindValue(":user",$user);
+            // $statement->bindValue(":score",$score);
+            $statement->execute([
+                ':date_submitted' => $date_submitted,
+                ':user' => $user,
+                ':score' => $score
+            ]);
             // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             // header('HTTP/1.1 200 OK');
             // header('Content-Type: application/json');
-            // echo json_encode({"It":"works"});
+            echo "it works";
         } else {
             echo "USAGE GET or POST";
         }
