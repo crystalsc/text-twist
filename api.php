@@ -1,13 +1,4 @@
 <?php
-
-function console_log($output, $with_script_tags = true) {
-    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
-');';
-    if ($with_script_tags) {
-        $js_code = '<script>' . $js_code . '</script>';
-    }
-    echo $js_code;
-}
         $verb = $_SERVER["REQUEST_METHOD"];
         
         if ($verb == "GET"){
@@ -38,29 +29,30 @@ function console_log($output, $with_script_tags = true) {
             header('Content-Type: application/json');
             echo json_encode($results);
         } else if ($verb == "POST"){
-            // $user = "anonymous";
-            // $score = 0;
-            // $date_submitted = "10";
-            // // if (isset($_POST["user"])){
-            // //     $user = $_POST["user"];
-            // // }
-            // // if (isset($_POST["score"])){
-            // //     $score = $_POST["score"];
-            // // }
-            // // if (isset($_POST["date"])){
-            // //     $date = $_POST["date"];
-            // // }
-            // $query = "INSERT INTO results (date_submitted,user,score) VALUES(:date_submitted,:user,:score)";
-            // echo $query;
-            // $statement = $dbhandle->prepare($query);
-            // $statement->bindValue(":date_submitted",$date_submitted);
-            // $statement->bindValue(":user",$user);
-            // $statement->bindValue(":score",$score);
-            // $statement->execute();
-            // // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-            // header('HTTP/1.1 200 OK');
-            // header('Content-Type: application/json');
-            // echo json_encode({"It":"works"});
+            echo "posting";
+            $user = "anonymous";
+            $score = 0;
+            $date_submitted = "10";
+            // if (isset($_POST["user"])){
+            //     $user = $_POST["user"];
+            // }
+            // if (isset($_POST["score"])){
+            //     $score = $_POST["score"];
+            // }
+            // if (isset($_POST["date"])){
+            //     $date = $_POST["date"];
+            // }
+            $query = "INSERT INTO results (date_submitted,user,score) VALUES(:date_submitted,:user,:score)";
+            echo $query;
+            $statement = $dbhandle->prepare($query);
+            $statement->bindValue(":date_submitted",$date_submitted);
+            $statement->bindValue(":user",$user);
+            $statement->bindValue(":score",$score);
+            $statement->execute();
+            // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            header('HTTP/1.1 200 OK');
+            header('Content-Type: application/json');
+            echo json_encode({"It":"works"});
         } else {
             echo "USAGE GET or POST";
         }
