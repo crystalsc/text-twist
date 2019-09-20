@@ -42,7 +42,8 @@
 
     #game,
     #compTimer,
-    #results {
+    #results,
+    #leaders {
       display: none;
     }
 
@@ -72,7 +73,7 @@
 
 <body>
   <nav class="navbar navbar-dark bg-primary ">
-    <div class="navbar-brand">Text Twist</div>
+    <div class="navbar-brand" href="#">Text Twist</div>
   </nav>
   <div class="container margins">
     <div class="d-flex justify-content-center">
@@ -90,6 +91,9 @@
           <button class="btn btn-primary buttons" id="easy">Easy</button>
           <button class="btn btn-primary buttons" id="med">Medium</button>
           <button class="btn btn-primary buttons" id="hard">Hard</button>
+        </div>
+        <div class="row buttons card-body">
+          <button class="btn btn-primary buttons" id="seeLeaderBoard">Leader Board</button>
         </div>
       </div>
 
@@ -132,6 +136,23 @@
             <input type="text" class="form-control" id="name" placeholder="Username">
           </div>
           <button class="btn btn-primary" id="enterName">Enter Name</button>
+        </div>
+      </div>
+      <div class="side card shadow p-3 mb-5 bg-white rounded" id="leaders">
+        <div class="card-title">
+          <h1>Leader Board</h1>
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Score</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -228,6 +249,17 @@
     document.getElementById("results").style.display = "block";
   }
 
+  let scoreBoard = function (scores) {
+    document.getElementById("start").style.display = "none";
+    document.getElementById("results").style.display = "none";
+    document.getElementById("leaders").style.display = "block";
+    scores.map(score => {
+      $("#tableBody".append(`<tr>
+                <td>${score.user}</td>
+                <td>${score.score}</td>
+              </tr>`));
+    });
+  }
 
   let showRacks = function (racks) {
     console.log(racks);
@@ -253,6 +285,7 @@
 
   $(document).ready(function () {
     document.getElementById("game").style.display = "none";
+    document.getElementById("leaders").style.display = "none";
     document.getElementById("start").style.display = "block";
 
     $("#easy").on("click", function () {
@@ -315,7 +348,17 @@
           method: "POST",
           url: "api.php",
           data: {date_submitted: Date.now(), user: x, score: score},
-          success: data => { console.log(data) }
+          success: data => { scoreBoard(data) }
+        });
+      }
+      $("#seeLeaderBoard").on("click", function () {
+      let x = document.getElementById("name").value;
+      if (x) {
+        $.ajax({
+          method: "POST",
+          url: "api.php",
+          data: {date_submitted: Date.now(), user: x, score: score},
+          success: data => { scoreBoard(data) }
         });
       }
 
