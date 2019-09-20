@@ -359,9 +359,9 @@
       let x = document.getElementById("name").value;
       if (x) {
         $.ajax({
-          method: "POST",
+          method: "GET",
           url: "api.php",
-          data: {date_submitted: Date.now(), user: x, score: score},
+          data: {leader: "true"},
           success: data => { scoreBoard(data) }
         });
       }

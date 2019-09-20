@@ -13,8 +13,10 @@
                 } else {
                     $query = "SELECT rack, weight, words FROM racks where weight <= 15 order by random() limit 1";
                 }
+            } else if (isset($_GET['leader'])){
+                $query = 'SELECT score, user FROM results ORDER BY score DESC limit 10';
             } else {
-                $query = "SELECT rack, weight, words FROM racks where weight <= 15 order by random() limit 1";
+                echo "error";
             }
             // $query = "CREATE TABLE results (
             //     date_submitted TEXT PRIMARY KEY,
@@ -53,7 +55,6 @@
             $statement->execute();
 
             $query = 'SELECT score, user FROM results ORDER BY score DESC limit 10';
-            $query = 'SELECT * FROM results';
             $statement = $dbhandle->prepare($query);
             $statement->execute();
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
