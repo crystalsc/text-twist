@@ -198,6 +198,7 @@
     $("#letter-" + index).html('');
     $("#letter-" + index).removeClass("gameA");
     $("#letter-" + index).style.pointerEvents = "none";
+    console.log(document.getElementById("square-" + letterCounter));
     document.getElementById("square-" + letterCounter).style.pointerEvents = "auto";
     document.getElementById("square-" + letterCounter).classList.add("gameA");
     document.getElementById("square-" + letterCounter).append(dict[index]);
