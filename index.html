@@ -259,10 +259,10 @@
     document.getElementById("results").style.display = "none";
     document.getElementById("leaders").style.display = "block";
     scores.map(score => {
-      $("#tableBody".append(`<tr>
+      $("#tableBody").append(`<tr>
                 <td>${score.user}</td>
                 <td>${score.score}</td>
-              </tr>`));
+              </tr>`);
     });
   }
 
