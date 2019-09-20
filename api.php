@@ -44,12 +44,12 @@
             if (isset($_POST["date"])){
                 $date = $_POST["date"];
             }
-            $query = 'INSERT INTO results (date_submitted,user,score) VALUES(:date_submitted,:user,:score)';
+            $query = 'INSERT INTO results (date_submitted,user,score) VALUES('.$date_submitted.','.$user.','.$score.')';
             // echo $query;
             $statement = $dbhandle->prepare($query);
-            $statement->bindParam(':date_submitted', $date_submitted);
-            $statement->bindParam(':user',$user);
-            $statement->bindParam(':score',$score);
+            // $statement->bindParam(':date_submitted', $date_submitted);
+            // $statement->bindParam(':user',$user);
+            // $statement->bindParam(':score',$score);
             $statement->execute();
 
             //$query = 'SELECT score, user FROM results ORDER BY score DESC limit 10';
