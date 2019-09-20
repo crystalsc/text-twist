@@ -315,7 +315,9 @@
           method: "POST",
           url: "api.php",
           success: data => { console.log(data) },
-          error: data => { console.log(data) }
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+          }
         });
       }
 
