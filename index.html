@@ -358,15 +358,13 @@
       
   });
   $("#seeLeaderBoard").on("click", function () {
-      let x = document.getElementById("name").value;
-      if (x) {
         $.ajax({
           method: "GET",
           url: "api.php",
           data: {leader: "true"},
           success: data => { scoreBoard(data) }
         });
-      }
+      
 
     });
   });
