@@ -42,7 +42,7 @@
                 $score = $_POST["score"];
             }
             if (isset($_POST["date"])){
-                $date = $_POST["date"];
+                $date_submitted = $_POST["date"];
             }
             $query = 'INSERT INTO results (date_submitted,user,score) VALUES('.'\''.$date_submitted.'\''.','.'\''.$user.'\''.','.$score.')';
             echo $query;
