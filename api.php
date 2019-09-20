@@ -52,8 +52,8 @@
             $statement->bindParam(':score',$score);
             $statement->execute();
 
-            $query = 'SELECT score, user FROM results ORDER BY score DESC limit 10';
-
+            //$query = 'SELECT score, user FROM results ORDER BY score DESC limit 10';
+            $query = 'SELECT * FROM results';
             $statement = $dbhandle->prepare($query);
             $statement->execute();
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
