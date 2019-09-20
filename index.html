@@ -197,6 +197,7 @@
   function clickLetter(index) {
     $("#letter-" + index).html('');
     $("#letter-" + index).removeClass("gameA");
+    console.log($("#letter-" + index));
     $("#letter-" + index).style.pointerEvents = "none";
     console.log(document.getElementById("square-" + letterCounter));
     document.getElementById("square-" + letterCounter).style.pointerEvents = "auto";
