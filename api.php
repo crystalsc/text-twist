@@ -51,15 +51,15 @@
             $statement->bindParam(':user',$user);
             $statement->bindParam(':score',$score);
             $statement->execute();
-            // $statement->execute([
-            //     ':date_submitted' => $date_submitted,
-            //     ':user' => $user,
-            //     ':score' => $score
-            // ]);
+
+            $query = 'SELECT score, user FROM results ORDER BY desc limit 10';
+
+            $statement = $dbhandle->prepare($query);
+            $statement->execute();
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             header('HTTP/1.1 200 OK');
             header('Content-Type: application/json');
-            echo $dbhandle->lastInsertId();
+            echo json_encode($results);
         } else {
             echo "USAGE GET or POST";
         }
