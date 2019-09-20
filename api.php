@@ -45,7 +45,7 @@
                 $date = $_POST["date"];
             }
             $query = 'INSERT INTO results (date_submitted,user,score) VALUES('.$date_submitted.','.$user.','.$score.')';
-            // echo $query;
+            echo $query;
             $statement = $dbhandle->prepare($query);
             // $statement->bindParam(':date_submitted', $date_submitted);
             // $statement->bindParam(':user',$user);
