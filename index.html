@@ -38,8 +38,6 @@
       width: 50px;
       margin: 10px;
       text-align: center;
-      cursor: pointer;
-      background: rgb(241, 238, 204);
     }
 
     #game,
@@ -53,6 +51,10 @@
       margin: 10px;
     }
 
+    .gameA:hover {
+      cursor: pointer;
+      background: rgb(241, 238, 204);
+    }
 
     a:hover {
       cursor: pointer;
@@ -194,6 +196,8 @@
 
   function clickLetter(index) {
     $("#letter-" + index).html('');
+    $("#letter-" + index).removeClass("gameA");
+    document.getElementById("square-" + letterCounter).classList.add("gameA");
     document.getElementById("square-" + letterCounter).append(dict[index]);
     dictSquare[letterCounter] = index;
     letterCounter++;
@@ -203,8 +207,10 @@
   function clickSquare(index) {
     if (index == letterCounter - 1) {
       letterCounter--;
+      document.getElementById("letter-" + dictSquare[letterCounter]).classList.add("gameA");
       document.getElementById("letter-" + dictSquare[letterCounter]).append(dict[dictSquare[letterCounter]]);
       $("#square-" + index).html('');
+      $("#square-" + index).removeClass("gameA");
       solution.pop();
     }
   }
