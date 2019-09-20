@@ -73,7 +73,7 @@
 
 <body>
   <nav class="navbar navbar-dark bg-primary ">
-    <a class="navbar-brand" href="#">Text Twist</a>
+    <a class="navbar-brand" id="startOver">Text Twist</a>
     <span class="navbar-text">
       <button class="btn btn-secondary" id="seeLeaderBoard">Leader Board</button>
     </span>
@@ -370,6 +370,12 @@
         });
       
 
+    });
+    $("#startOver").on("click", function () {
+      document.getElementById("game").style.display = "none";
+      document.getElementById("leaders").style.display = "none";
+      document.getElementById("results").style.display = "none";
+      document.getElementById("start").style.display = "block";
     });
   });
 </script>
