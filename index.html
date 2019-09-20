@@ -197,7 +197,7 @@
   function clickLetter(index) {
     $("#letter-" + index).html('');
     $("#letter-" + index).removeClass("gameA");
-    document.getElementById("square-" + letterCounter).style.pointerEvents = "none";
+    $("#letter-" + index).style.pointerEvents = "none";
     document.getElementById("square-" + letterCounter).classList.add("gameA");
     document.getElementById("square-" + letterCounter).append(dict[index]);
     dictSquare[letterCounter] = index;
@@ -208,7 +208,7 @@
   function clickSquare(index) {
     if (index == letterCounter - 1) {
       letterCounter--;
-      document.getElementById("letter-" + dictSquare[letterCounter]).style.pointerEvents = "none";as
+      $("#square-" + index).style.pointerEvents = "none";
       document.getElementById("letter-" + dictSquare[letterCounter]).classList.add("gameA");
       document.getElementById("letter-" + dictSquare[letterCounter]).append(dict[dictSquare[letterCounter]]);
       $("#square-" + index).html('');
