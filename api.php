@@ -50,11 +50,7 @@
             header('HTTP/1.1 200 OK');
             header('Content-Type: application/json');
             $statement->bindParam(':score',$score);
-            if($statement->execute()) {
-                echo {"success":"yes"};
-            }else {
-                echo {"nay":"yes"};
-            }
+            $statement->execute();
             // $statement->execute([
             //     ':date_submitted' => $date_submitted,
             //     ':user' => $user,
@@ -63,7 +59,7 @@
             // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             // header('HTTP/1.1 200 OK');
             // header('Content-Type: application/json');
-            // echo $dbhandle->lastInsertId();
+            echo $dbhandle->lastInsertId();
         } else {
             echo "USAGE GET or POST";
         }
