@@ -50,8 +50,7 @@
             $statement->bindParam(':date_submitted', $date_submitted);
             $statement->bindParam(':user',$user);
             $statement->bindParam(':score',$score);
-            $statement->execute();
-            echo $dbhandle->lastInsertId();
+            echo $statement->execute();
 
             //$query = 'SELECT score, user FROM results ORDER BY score DESC limit 10';
             // $query = 'SELECT * FROM results';
