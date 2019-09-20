@@ -47,11 +47,13 @@
             $statement = $dbhandle->prepare($query);
             $statement->bindParam(':date_submitted', $date_submitted);
             $statement->bindParam(':user',$user);
+            header('HTTP/1.1 200 OK');
+            header('Content-Type: application/json');
             $statement->bindParam(':score',$score);
             if($statement->execute()) {
-                echo "success";
+                echo {"success":"yes"};
             }else {
-                echo "nay";
+                echo {"nay":"yes"};
             }
             // $statement->execute([
             //     ':date_submitted' => $date_submitted,
@@ -61,7 +63,7 @@
             // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
             // header('HTTP/1.1 200 OK');
             // header('Content-Type: application/json');
-            echo $dbhandle->lastInsertId();
+            // echo $dbhandle->lastInsertId();
         } else {
             echo "USAGE GET or POST";
         }
