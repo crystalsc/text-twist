@@ -74,6 +74,9 @@
 <body>
   <nav class="navbar navbar-dark bg-primary ">
     <div class="navbar-brand" href="#">Text Twist</div>
+    <span class="navbar-text">
+      <button class="btn btn-secondary" id="seeLeaderBoard">Leader Board</button>
+    </span>
   </nav>
   <div class="container margins">
     <div class="d-flex justify-content-center">
@@ -86,15 +89,13 @@
           <input type="checkbox" class="form-check-input" id="competition">
           <label class="form-check-label" for="competition">Competition Mode</label>
         </div>
-        <div class="row buttons card-body">
+        <div class="row buttons">
 
           <button class="btn btn-primary buttons" id="easy">Easy</button>
           <button class="btn btn-primary buttons" id="med">Medium</button>
           <button class="btn btn-primary buttons" id="hard">Hard</button>
         </div>
-        <div class="row buttons card-body">
-          <button class="btn btn-primary buttons" id="seeLeaderBoard">Leader Board</button>
-        </div>
+        
       </div>
 
       <div class="side card shadow p-3 mb-5 bg-white rounded" id="game">
@@ -251,6 +252,7 @@
 
   let scoreBoard = function (scores) {
     document.getElementById("start").style.display = "none";
+    document.getElementById("game").style.display = "none";
     document.getElementById("results").style.display = "none";
     document.getElementById("leaders").style.display = "block";
     scores.map(score => {
