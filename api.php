@@ -30,25 +30,25 @@
             echo json_encode($results);
         } else if ($verb == "POST"){
             // echo "posting";
+            $dbhandle = new PDO("sqlite:scrabble.sqlite") or die("Failed to open DB");
+            if (!$dbhandle) die ($error);
             $user = "anonymous";
             $score = 0;
             $date_submitted = "10";
-            // if (isset($_POST["user"])){
-            //     $user = $_POST["user"];
-            // }
-            // if (isset($_POST["score"])){
-            //     $score = $_POST["score"];
-            // }
-            // if (isset($_POST["date"])){
-            //     $date = $_POST["date"];
-            // }
+            if (isset($_POST["user"])){
+                $user = $_POST["user"];
+            }
+            if (isset($_POST["score"])){
+                $score = $_POST["score"];
+            }
+            if (isset($_POST["date"])){
+                $date = $_POST["date"];
+            }
             $query = 'INSERT INTO results (date_submitted,user,score) VALUES(:date_submitted,:user,:score)';
             // echo $query;
             $statement = $dbhandle->prepare($query);
             $statement->bindParam(':date_submitted', $date_submitted);
             $statement->bindParam(':user',$user);
-            header('HTTP/1.1 200 OK');
-            header('Content-Type: application/json');
             $statement->bindParam(':score',$score);
             $statement->execute();
             // $statement->execute([
@@ -56,9 +56,9 @@
             //     ':user' => $user,
             //     ':score' => $score
             // ]);
-            // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-            // header('HTTP/1.1 200 OK');
-            // header('Content-Type: application/json');
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            header('HTTP/1.1 200 OK');
+            header('Content-Type: application/json');
             echo $dbhandle->lastInsertId();
         } else {
             echo "USAGE GET or POST";

@@ -314,10 +314,8 @@
         $.ajax({
           method: "POST",
           url: "api.php",
-          success: data => { console.log(data) },
-          error: function(jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
-          }
+          data: {date_submitted: Date.now(), user: x, score: score},
+          success: data => { console.log(data) }
         });
       }
 
