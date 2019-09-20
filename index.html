@@ -51,7 +51,7 @@
       margin: 10px;
     }
 
-    a:hover {
+    .gameA:hover {
       cursor: pointer;
       background: rgb(241, 238, 204);
     }
@@ -73,7 +73,7 @@
 
 <body>
   <nav class="navbar navbar-dark bg-primary ">
-    <div class="navbar-brand" href="#">Text Twist</div>
+    <a class="navbar-brand" href="#">Text Twist</a>
     <span class="navbar-text">
       <button class="btn btn-secondary" id="seeLeaderBoard">Leader Board</button>
     </span>
@@ -283,8 +283,8 @@
       words = rack.words.split('@@');
       rack.rack.split('').forEach(function (item, index) {
         dict[index] = item;
-        $("#boxes").append(`<a class="square" onclick="clickSquare(${index})" id="square-${index}"></a>`);
-        $("#letters").append(`<a class="letter" onclick="clickLetter(${index})" id="letter-${index}">${item}</a>`);
+        $("#boxes").append(`<a class="square gameA" onclick="clickSquare(${index})" id="square-${index}"></a>`);
+        $("#letters").append(`<a class="letter gameA" onclick="clickLetter(${index})" id="letter-${index}">${item}</a>`);
       });
     })
 

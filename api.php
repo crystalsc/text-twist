@@ -18,12 +18,6 @@
             } else {
                 echo "error";
             }
-            // $query = "CREATE TABLE results (
-            //     date_submitted TEXT PRIMARY KEY,
-            //     user TEXT NOT NULL,
-            //     score INTEGER NOT NULL
-            // )";
-            // $query = "SELECT rack, weight, words FROM racks where weight > 30 order by random() limit 1";
             $statement = $dbhandle->prepare($query);
             $statement->execute();
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -49,9 +43,6 @@
             $query = 'INSERT INTO results (date_submitted,user,score) VALUES('.'\''.$date_submitted.'\''.','.'\''.$user.'\''.','.$score.')';
             // echo $query;
             $statement = $dbhandle->prepare($query);
-            // // $statement->bindParam(':date_submitted', $date_submitted);
-            // // $statement->bindParam(':user',$user);
-            // // $statement->bindParam(':score',$score);
             $statement->execute();
 
             $query = 'SELECT score, user FROM results ORDER BY score DESC limit 10';
