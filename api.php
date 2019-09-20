@@ -50,20 +50,17 @@
             $statement->bindParam(':date_submitted', $date_submitted);
             $statement->bindParam(':user',$user);
             $statement->bindParam(':score',$score);
-            if($statement->execute()) {
-                echo "success";
-            } else {
-                echo "fail";
-            }
+            $statement->execute();
+            echo $dbhandle->lastInsertId();
 
             //$query = 'SELECT score, user FROM results ORDER BY score DESC limit 10';
-            $query = 'SELECT * FROM results';
-            $statement = $dbhandle->prepare($query);
-            $statement->execute();
-            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-            header('HTTP/1.1 200 OK');
-            header('Content-Type: application/json');
-            echo json_encode($results);
+            // $query = 'SELECT * FROM results';
+            // $statement = $dbhandle->prepare($query);
+            // $statement->execute();
+            // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            // header('HTTP/1.1 200 OK');
+            // header('Content-Type: application/json');
+            // echo json_encode($results);
         } else {
             echo "USAGE GET or POST";
         }
