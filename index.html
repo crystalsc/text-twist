@@ -353,7 +353,9 @@
           success: data => { scoreBoard(data) }
         });
       }
-      $("#seeLeaderBoard").on("click", function () {
+      
+  });
+  $("#seeLeaderBoard").on("click", function () {
       let x = document.getElementById("name").value;
       if (x) {
         $.ajax({
