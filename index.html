@@ -296,7 +296,7 @@
       words = rack.words.split('@@');
       rack.rack.split('').forEach(function (item, index) {
         dict[index] = item;
-        $("#boxes").append(`<a class="square gameA" onclick="clickSquare(${index})" id="square-${index}"></a>`);
+        $("#boxes").append(`<a class="square" onclick="clickSquare(${index})" id="square-${index}"></a>`);
         $("#letters").append(`<a class="letter gameA" onclick="clickLetter(${index})" id="letter-${index}">${item}</a>`);
       });
     })
