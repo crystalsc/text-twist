@@ -258,6 +258,7 @@
     document.getElementById("game").style.display = "none";
     document.getElementById("results").style.display = "none";
     document.getElementById("leaders").style.display = "block";
+    $("#tableBody").html('');
     scores.map(score => {
       $("#tableBody").append(`
               <tr>
