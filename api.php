@@ -46,20 +46,20 @@
             }
             $query = 'INSERT INTO results (date_submitted,user,score) VALUES('.'\''.$date_submitted.'\''.','.'\''.$user.'\''.','.$score.')';
             echo $query;
-            $statement = $dbhandle->prepare($query);
-            // $statement->bindParam(':date_submitted', $date_submitted);
-            // $statement->bindParam(':user',$user);
-            // $statement->bindParam(':score',$score);
-            $statement->execute();
+            // $statement = $dbhandle->prepare($query);
+            // // $statement->bindParam(':date_submitted', $date_submitted);
+            // // $statement->bindParam(':user',$user);
+            // // $statement->bindParam(':score',$score);
+            // $statement->execute();
 
-            //$query = 'SELECT score, user FROM results ORDER BY score DESC limit 10';
-            $query = 'SELECT * FROM results';
-            $statement = $dbhandle->prepare($query);
-            $statement->execute();
-            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-            header('HTTP/1.1 200 OK');
-            header('Content-Type: application/json');
-            echo json_encode($results);
+            // //$query = 'SELECT score, user FROM results ORDER BY score DESC limit 10';
+            // $query = 'SELECT * FROM results';
+            // $statement = $dbhandle->prepare($query);
+            // $statement->execute();
+            // $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            // header('HTTP/1.1 200 OK');
+            // header('Content-Type: application/json');
+            // echo json_encode($results);
         } else {
             echo "USAGE GET or POST";
         }
