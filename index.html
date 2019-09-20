@@ -198,8 +198,7 @@
     $("#letter-" + index).html('');
     $("#letter-" + index).removeClass("gameA");
     $("#letter-" + index)[0].style.pointerEvents = "none";
-    console.log(document.getElementById("square-" + letterCounter));
-    document.getElementById("square-" + letterCounter)[0].style.pointerEvents = "auto";
+    $("#square-" + letterCounter)[0].style.pointerEvents = "auto";
     document.getElementById("square-" + letterCounter).classList.add("gameA");
     document.getElementById("square-" + letterCounter).append(dict[index]);
     dictSquare[letterCounter] = index;
@@ -211,7 +210,7 @@
     if (index == letterCounter - 1) {
       letterCounter--;
       $("#square-" + index)[0].style.pointerEvents = "none";
-      document.getElementById("letter-" + dictSquare[letterCounter])[0].style.pointerEvents = "auto";
+      $("#letter-" + dictSquare[letterCounter])[0].style.pointerEvents = "auto";
       document.getElementById("letter-" + dictSquare[letterCounter]).classList.add("gameA");
       document.getElementById("letter-" + dictSquare[letterCounter]).append(dict[dictSquare[letterCounter]]);
       $("#square-" + index).html('');
