@@ -124,7 +124,7 @@
           </div>
           <div class="row buttons">
             <button class="btn btn-primary buttons" onclick="checkSolution()">Enter</button>
-            <button class="btn btn-primary buttons" onclick="endGame()">End Game</button>
+            <button class="btn btn-primary buttons" id="endGameButton" onclick="endGame()">End Game</button>
           </div>
           <div id="response">
 
@@ -223,6 +223,7 @@
     let x = document.getElementById("competition").value;
     if (x === "on") {
       document.getElementById("compTimer").style.display = "block";
+      document.getElementById("endGameButton").style.display = "block";
       var start = Date.now(),
         diff,
         minutes,
@@ -255,6 +256,9 @@
       // we don't want to wait a full second before the timer starts
       timer();
       setInterval(timer, 1000);
+    } else {
+      document.getElementById("compTimer").style.display = "none";
+      document.getElementById("endGameButton").style.display = "none";
     }
   }
 
