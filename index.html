@@ -79,7 +79,7 @@
   <nav class="navbar navbar-dark bg-primary ">
     <a class="navbar-brand aHover" id="startOver">Text Twist</a>
     <span class="navbar-text">
-      <button class="btn btn-secondary" id="seeLeaderBoard">Leader Board</button>
+      <button class="btn btn-secondary" id="seeLeaderBoard" onclick="seeLeaderBoard()">Leader Board</button>
     </span>
   </nav>
   <div class="container margins">
@@ -192,6 +192,15 @@
     } else {
       $("#response").append(`Try Again!`);
     }
+  }
+
+  function seeLeaderBoard() {
+    $.ajax({
+          method: "GET",
+          url: "api.php",
+          data: {leader: "true"},
+          success: data => { scoreBoard(data) }
+        });
   }
 
   function clickLetter(index) {
@@ -380,16 +389,6 @@
       }
       
   });
-  $("#seeLeaderBoard").on("click", function () {
-        $.ajax({
-          method: "GET",
-          url: "api.php",
-          data: {leader: "true"},
-          success: data => { scoreBoard(data) }
-        });
-      
-
-    });
     $("#startOver").on("click", function () {
       document.getElementById("game").style.display = "none";
       document.getElementById("leaders").style.display = "none";
