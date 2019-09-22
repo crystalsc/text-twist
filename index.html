@@ -220,9 +220,9 @@
   }
 
   function startTimer(duration, display) {
-    let x = document.getElementById("competition").value;
+    let x = document.getElementById("competition").checked;
     console.log(x);
-    if (x === "on") {
+    if (x) {
       console.log("on");
       document.getElementById("compTimer").style.display = "block";
       document.getElementById("endGameButton").style.display = "block";
