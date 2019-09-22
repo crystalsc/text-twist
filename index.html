@@ -222,6 +222,7 @@
   function startTimer(duration, display) {
     let x = document.getElementById("competition").value;
     if (x === "on") {
+      console.log("on");
       document.getElementById("compTimer").style.display = "block";
       document.getElementById("endGameButton").style.display = "block";
       var start = Date.now(),
@@ -257,6 +258,7 @@
       timer();
       setInterval(timer, 1000);
     } else {
+      console.log("off");
       document.getElementById("compTimer").style.display = "none";
       document.getElementById("endGameButton").style.display = "none";
     }
