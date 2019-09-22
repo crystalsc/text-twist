@@ -230,9 +230,8 @@
 
   function startTimer(duration, display) {
     let x = document.getElementById("competition").checked;
-    console.log(x);
     if (x) {
-      console.log("on");
+      
       document.getElementById("compTimer").style.display = "block";
       document.getElementById("endGameButton").style.display = "block";
       var start = Date.now(),
@@ -268,7 +267,6 @@
       timer();
       setInterval(timer, 1000);
     } else {
-      console.log("off");
       document.getElementById("compTimer").style.display = "none";
       document.getElementById("endGameButton").style.display = "none";
     }
@@ -280,8 +278,6 @@
   }
 
   let scoreBoard = function (scores) {
-    console.log("scoreboard");
-    console.log(scores);
     document.getElementById("start").style.display = "none";
     document.getElementById("game").style.display = "none";
     document.getElementById("results").style.display = "none";
@@ -298,7 +294,6 @@
   }
 
   let showRacks = function (racks) {
-    console.log(racks);
     letterCounter = 0;
     dict = {};
     dictSquare = {};
