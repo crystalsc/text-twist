@@ -178,8 +178,8 @@
 
   function checkSolution() {
     $("#response").html("");
-    $("#score").html("");
     if (words.includes(solution.join(''))) {
+      $("#score").html("");
       $("#response").append(`Correct!`);
       score = parseInt(score) + (parseInt(weight) * scoreMultiple);
       $("#score").append("Score: " + score);
